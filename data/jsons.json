@@ -1,0 +1,1921 @@
+{
+  "chunks": [
+    {
+      "number": "01",
+      "title": "",
+      "start": 0.0,
+      "end": 6.08,
+      "text": " Welcome to Machine Learning."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 6.08,
+      "end": 7.76,
+      "text": " What is Machine Learning?"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 7.76,
+      "end": 11.76,
+      "text": " You probably use it many times a day without even knowing it."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 11.76,
+      "end": 14.280000000000001,
+      "text": " Anytime you want to find out something like,"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 14.280000000000001,
+      "end": 16.04,
+      "text": " how do I make a sushi roll?"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 16.04,
+      "end": 18.28,
+      "text": " You can do a web search on Google,"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 18.28,
+      "end": 20.56,
+      "text": " Bing, or Baidu to find out."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 20.56,
+      "end": 22.72,
+      "text": " That works so well because"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 22.72,
+      "end": 27.080000000000002,
+      "text": " the machine learning software has figured out how to rank web pages."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 27.08,
+      "end": 31.839999999999996,
+      "text": " Or when you upload pictures to Instagram or Snapchat and think to yourself,"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 31.839999999999996,
+      "end": 34.96,
+      "text": " I want to tag my friends so they can see their pictures."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 34.96,
+      "end": 40.0,
+      "text": " Well, these apps can recognize your friends in your pictures and label them as well."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 40.0,
+      "end": 42.36,
+      "text": " That's also machine learning."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 42.36,
+      "end": 46.08,
+      "text": " Or if you've just finished watching a Star Wars movie on"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 46.08,
+      "end": 48.16,
+      "text": " a video streaming service and you think,"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 48.16,
+      "end": 50.4,
+      "text": " what are the similar movies that I watch?"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 50.4,
+      "end": 53.0,
+      "text": " Well, the streaming service will likely use"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 53.0,
+      "end": 56.2,
+      "text": " machine learning to recommend something that you might like."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 56.36,
+      "end": 60.36,
+      "text": " Each time you use voice to text on your phone to write a text message."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 60.36,
+      "end": 62.160000000000004,
+      "text": " Hey Andrew, how's it going?"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 62.160000000000004,
+      "end": 63.440000000000005,
+      "text": " Or tell your phone,"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 63.440000000000005,
+      "end": 65.72,
+      "text": " hey Siri, play a song by Rihanna."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 65.72,
+      "end": 67.32000000000001,
+      "text": " Or ask your other phone,"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 67.32000000000001,
+      "end": 70.96000000000001,
+      "text": " okay Google, show me Indian restaurants near me."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 70.96000000000001,
+      "end": 73.52000000000001,
+      "text": " That's also machine learning."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 73.52000000000001,
+      "end": 76.04,
+      "text": " Each time you receive an e-mail titled,"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 76.04,
+      "end": 78.96000000000001,
+      "text": " congratulations, you've won a million dollars."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 78.96000000000001,
+      "end": 81.04,
+      "text": " Well, maybe you're rich, congratulations."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 81.04,
+      "end": 82.32000000000001,
+      "text": " Or more likely,"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 82.32000000000001,
+      "end": 85.64,
+      "text": " your e-mail service will probably flag it as spam."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 85.8,
+      "end": 89.6,
+      "text": " That too is an application of machine learning."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 89.6,
+      "end": 92.4,
+      "text": " Beyond consumer applications that you might use,"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 92.4,
+      "end": 98.68,
+      "text": " AI is also rapidly making its way into big companies and into industrial applications."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 98.68,
+      "end": 102.36,
+      "text": " For example, I'm deeply concerned about climate change,"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 102.36,
+      "end": 105.8,
+      "text": " and I'm glad to see that machine learning is already"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 105.8,
+      "end": 109.88,
+      "text": " hoping to optimize wind turbine power generation."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 109.88,
+      "end": 111.36,
+      "text": " Or in healthcare,"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 111.36,
+      "end": 114.24000000000001,
+      "text": " it's starting to make its way into hospitals to help"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 114.28,
+      "end": 117.28,
+      "text": " doctors make accurate diagnoses."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 117.28,
+      "end": 119.44,
+      "text": " Or recently, at Learning AI,"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 119.44,
+      "end": 123.67999999999999,
+      "text": " I've been doing a lot of work putting computer vision into factories to help"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 123.67999999999999,
+      "end": 128.68,
+      "text": " inspect if something coming off the assembly line has any defects."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 128.68,
+      "end": 131.07999999999998,
+      "text": " That's machine learning."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 131.07999999999998,
+      "end": 136.51999999999998,
+      "text": " It's a science of getting computers to learn without being explicitly programmed."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 136.51999999999998,
+      "end": 139.95999999999998,
+      "text": " In this class, you learn about machine learning,"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 139.95999999999998,
+      "end": 143.6,
+      "text": " and get to implement machine learning in code yourself."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 143.6,
+      "end": 147.51999999999998,
+      "text": " Millions of others have taken the earlier version of this course,"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 147.51999999999998,
+      "end": 150.35999999999999,
+      "text": " which is a course that led to the founding of Coursera,"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 150.35999999999999,
+      "end": 154.44,
+      "text": " and many learners ended up building exciting machine learning systems,"
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 154.44,
+      "end": 158.0,
+      "text": " or even pursuing very successful careers in AI."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 158.0,
+      "end": 160.84,
+      "text": " I'm excited that you're on this journey with me."
+    },
+    {
+      "number": "01",
+      "title": "",
+      "start": 160.84,
+      "end": 163.76,
+      "text": " Welcome, and let's get started."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 0.0,
+      "end": 5.8,
+      "text": " In this class, you learn about the state of the art and also practice"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 5.8,
+      "end": 8.44,
+      "text": " implementing machine learning algorithms yourself."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 9.16,
+      "end": 12.6,
+      "text": " You learn about the most important machine learning algorithms, some of"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 12.6,
+      "end": 17.44,
+      "text": " which are exactly what's being used in large AI or large tech companies today."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 17.88,
+      "end": 21.2,
+      "text": " And you get a sense of what is the state of the art in AI."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 22.28,
+      "end": 26.76,
+      "text": " Beyond learning the algorithms though, in this class, you also learn all the"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 26.76,
+      "end": 31.840000000000003,
+      "text": " important practical tips and tricks for making them perform well, and you get to"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 31.840000000000003,
+      "end": 34.64,
+      "text": " implement them and see how they work for yourself."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 35.760000000000005,
+      "end": 39.24,
+      "text": " So why is machine learning so widely used today?"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 39.96,
+      "end": 44.72,
+      "text": " Machine learning had grown up as a subfield of AI or artificial intelligence."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 45.160000000000004,
+      "end": 49.0,
+      "text": " We wanted to build intelligent machines, and it turns out that there are a few"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 49.0,
+      "end": 52.72,
+      "text": " basic things that we could program a machine to do, such as how to find the"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 52.72,
+      "end": 55.48,
+      "text": " shortest path from A to B, like in your GPS."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 56.04,
+      "end": 61.08,
+      "text": " But for the most part, we just did not know how to write an explicit program to"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 61.08,
+      "end": 65.4,
+      "text": " do many of the more interesting things such as perform web search, recognize"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 65.4,
+      "end": 69.56,
+      "text": " human speech, diagnose diseases from x-rays, or build a self-driving car."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 70.48,
+      "end": 74.16,
+      "text": " The only way we knew how to do these things was to have a"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 74.16,
+      "end": 77.0,
+      "text": " machine learn to do it by itself."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 77.96000000000001,
+      "end": 82.44,
+      "text": " For me, when I founded and was leading the Google Brain team, I worked on"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 82.44,
+      "end": 86.2,
+      "text": " problems like speech recognition, computer vision for Google Maps, Street"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 86.2,
+      "end": 88.2,
+      "text": " View images, and advertising."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 88.75999999999999,
+      "end": 93.92,
+      "text": " Or leading AI at Baidu, I worked on everything from AI for augmented reality"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 93.96,
+      "end": 97.64,
+      "text": " to combating payment fraud to leading a self-driving car team."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 98.72,
+      "end": 103.16,
+      "text": " Most recently at Landing AI, AI Fund at Stanford University, I've been getting"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 103.16,
+      "end": 107.08,
+      "text": " to work on AI applications in manufacturing, large-scale agriculture,"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 107.28,
+      "end": 109.47999999999999,
+      "text": " healthcare, e-commerce, and other problems."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 110.4,
+      "end": 114.12,
+      "text": " Today, there are hundreds of thousands, perhaps millions of people working on"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 114.12,
+      "end": 117.12,
+      "text": " machine learning applications who could tell you similar stories about"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 117.12,
+      "end": 118.72,
+      "text": " their work with machine learning."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 119.60000000000001,
+      "end": 123.88000000000001,
+      "text": " When you've learned these skills, I hope that you too will find it great fun to"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 123.88000000000001,
+      "end": 128.16,
+      "text": " dabble in exciting different applications and maybe even different industries."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 128.92000000000002,
+      "end": 132.56,
+      "text": " In fact, I find it hard to think of any industry that machine learning is"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 132.6,
+      "end": 136.68,
+      "text": " unlikely to touch in a significant way now or in the near future."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 136.8,
+      "end": 142.20000000000002,
+      "text": " Looking even further into the future, many people, including me, are excited"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 142.20000000000002,
+      "end": 146.6,
+      "text": " about the AI dream of someday building machines as intelligent as you or me."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 147.32,
+      "end": 151.52,
+      "text": " This is sometimes called Artificial General Intelligence or AGI."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 152.56,
+      "end": 157.28,
+      "text": " I think AGI has been overhyped and we're still a long way away from that goal."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 157.92000000000002,
+      "end": 163.12,
+      "text": " I don't know if it'll take 50 years or 500 years or longer to get there, but"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 163.16,
+      "end": 168.16,
+      "text": " most AI researchers believe that the best way to get closer to what that goal is by"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 168.16,
+      "end": 172.76,
+      "text": " using learning algorithms, maybe ones that take some inspiration from how"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 172.76,
+      "end": 173.92000000000002,
+      "text": " the human brain works."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 174.4,
+      "end": 179.24,
+      "text": " You'll also hear a little more about this quest for AGI later in this course."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 179.92000000000002,
+      "end": 185.8,
+      "text": " According to a study by McKinsey, AI and machine learning is estimated to create"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 185.8,
+      "end": 191.12,
+      "text": " an additional $13 trillion of value annually by the year 2030."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 191.12,
+      "end": 194.72,
+      "text": " Even though machine learning is already creating tremendous amounts of value in"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 194.72,
+      "end": 200.28,
+      "text": " the software industry, I think there could be even vastly greater value that"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 200.28,
+      "end": 205.36,
+      "text": " is yet to be created outside the software industry in sectors such as retail,"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 205.4,
+      "end": 209.88,
+      "text": " travel, transportation, automotive, materials manufacturing, and so on."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 211.08,
+      "end": 214.96,
+      "text": " Because of the massive untapped opportunities across so many different"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 214.96,
+      "end": 220.6,
+      "text": " sectors, today there is a vast, untapped opportunity for AI to be"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 220.6,
+      "end": 225.04,
+      "text": " able to meet the vast unfulfilled demand for this skill set."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 226.04,
+      "end": 229.68,
+      "text": " That's why this is such a great time to be learning about machine learning."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 230.64,
+      "end": 235.12,
+      "text": " If you find machine learning applications exciting, I hope you stick"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 235.12,
+      "end": 236.64,
+      "text": " with me through this course."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 237.07999999999998,
+      "end": 241.92,
+      "text": " I can almost guarantee that you'll find mastering these skills worthwhile."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 242.44,
+      "end": 247.79999999999998,
+      "text": " In the next video, we'll look at a more formal definition of what is machine"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 247.88000000000002,
+      "end": 251.16000000000003,
+      "text": " learning, and we'll begin to talk about the main types of machine"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 251.16000000000003,
+      "end": 253.44,
+      "text": " learning problems and algorithms."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 253.96,
+      "end": 259.04,
+      "text": " You pick up some of the main machine learning terminology and start to get a"
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 259.04,
+      "end": 264.36,
+      "text": " sense of what are the different algorithms and when each one might be appropriate."
+    },
+    {
+      "number": "02",
+      "title": "",
+      "start": 265.0,
+      "end": 267.68,
+      "text": " So let's go on to the next video."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 0.0,
+      "end": 2.5,
+      "text": " So, what is machine learning?"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 2.5,
+      "end": 5.68,
+      "text": " In this video, you learn the definition of what it is,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 5.68,
+      "end": 9.040000000000001,
+      "text": " and also get a sense of when you might want to apply it."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 9.040000000000001,
+      "end": 10.88,
+      "text": " Let's take a look together."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 10.88,
+      "end": 13.24,
+      "text": " Here's a definition of what is"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 13.24,
+      "end": 16.94,
+      "text": " machine learning that is attributed to Arthur Samuel."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 16.94,
+      "end": 20.3,
+      "text": " He defined machine learning as the field of study that gives"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 20.3,
+      "end": 24.32,
+      "text": " computers the ability to learn without being explicitly programmed."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 24.32,
+      "end": 28.18,
+      "text": " Samuel's claim to fame was that back in the 1950s,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 28.18,
+      "end": 30.5,
+      "text": " he wrote the checkers playing program."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 30.5,
+      "end": 34.0,
+      "text": " The amazing thing about this program was that Arthur Samuel"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 34.0,
+      "end": 37.54,
+      "text": " himself wasn't a very good checkers player."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 37.54,
+      "end": 40.019999999999996,
+      "text": " What he did was, he had programmed"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 40.019999999999996,
+      "end": 44.0,
+      "text": " a computer to play maybe tens of thousands of games against itself."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 44.0,
+      "end": 47.8,
+      "text": " By watching what sorts of board positions tended to lead to wins,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 47.8,
+      "end": 50.32,
+      "text": " and what positions tended to lead to losses,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 50.32,
+      "end": 52.6,
+      "text": " the checkers playing program learned over"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 52.6,
+      "end": 55.7,
+      "text": " time what are good or bad board positions."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 55.7,
+      "end": 59.260000000000005,
+      "text": " By trying to get to good and avoid bad positions,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 59.260000000000005,
+      "end": 63.42,
+      "text": " this program learned to get better and better at playing checkers."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 63.42,
+      "end": 68.22,
+      "text": " Because the computer had the patience to play tens of thousands of games against itself,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 68.22,
+      "end": 72.1,
+      "text": " it was able to get so much checkers playing experience that"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 72.1,
+      "end": 77.04,
+      "text": " eventually it became a better checkers player than Arthur Samuel himself."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 77.04,
+      "end": 79.14,
+      "text": " Now, throughout these videos,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 79.14,
+      "end": 81.22,
+      "text": " besides me trying to talk about stuff,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 81.22,
+      "end": 83.86,
+      "text": " I'll occasionally ask you a question to"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 83.86,
+      "end": 86.3,
+      "text": " help make sure you understand the content."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 86.3,
+      "end": 91.26,
+      "text": " Here's one about what happens if the computer had played far fewer games."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 91.26,
+      "end": 95.42,
+      "text": " Please take a look and pick whichever you think is a better answer."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 97.74,
+      "end": 100.62,
+      "text": " Thanks for looking at the quiz."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 100.62,
+      "end": 104.86,
+      "text": " So if you had selected this answer,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 104.86,
+      "end": 106.42,
+      "text": " would have made it worse,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 106.42,
+      "end": 108.42,
+      "text": " then you got it right."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 108.42,
+      "end": 112.86,
+      "text": " In general, the more opportunities you give a learning algorithm to learn,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 112.86,
+      "end": 114.7,
+      "text": " the better it will perform."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 114.7,
+      "end": 117.82,
+      "text": " If you didn't select the correct answer the first time,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 117.82,
+      "end": 119.3,
+      "text": " that's totally okay too."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 119.3,
+      "end": 121.78,
+      "text": " The point of these quiz questions isn't"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 121.78,
+      "end": 124.5,
+      "text": " to see if you can get them all correct on the first try."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 124.5,
+      "end": 128.9,
+      "text": " These questions are here just to help you practice the concepts you're learning."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 128.9,
+      "end": 132.44,
+      "text": " Arthur Samuel's definition was a rather informal one,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 132.44,
+      "end": 134.1,
+      "text": " but in the next two videos,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 134.1,
+      "end": 136.34,
+      "text": " we'll dive deeper together into what are"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 136.34,
+      "end": 140.06,
+      "text": " the major types of machine learning algorithms."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 140.06,
+      "end": 144.82,
+      "text": " In this class, you learn about many different learning algorithms."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 144.82,
+      "end": 151.3,
+      "text": " The two main types of machine learning are supervised learning and unsupervised learning."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 151.3,
+      "end": 156.1,
+      "text": " We'll define what these terms mean more in the next couple of videos."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 156.1,
+      "end": 161.14000000000001,
+      "text": " Of these two, supervised learning is the type of machine learning that is"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 161.14000000000001,
+      "end": 164.54,
+      "text": " used most in many real-world applications and"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 164.54,
+      "end": 168.82,
+      "text": " that has seen the most rapid advancement and innovation."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 168.82,
+      "end": 173.29999999999998,
+      "text": " In this specialization, which has three causes in total,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 173.29999999999998,
+      "end": 176.57999999999998,
+      "text": " the first and second causes will focus on supervised learning,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 176.57999999999998,
+      "end": 179.82,
+      "text": " and the third will focus on unsupervised learning,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 179.82,
+      "end": 182.98,
+      "text": " recommender systems, and reinforcement learning."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 182.98,
+      "end": 187.45999999999998,
+      "text": " By far, the most used types of learning algorithms today are"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 187.45999999999998,
+      "end": 191.98,
+      "text": " supervised learning, unsupervised learning, and recommender systems."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 191.98,
+      "end": 196.45999999999998,
+      "text": " The other thing we're going to spend a lot of time on in this specialization is"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 196.46,
+      "end": 200.22,
+      "text": " practical advice for applying learning algorithms."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 200.22,
+      "end": 202.62,
+      "text": " This is something I feel pretty strongly about."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 202.62,
+      "end": 207.62,
+      "text": " Teaching about learning algorithms is like giving someone a set of tools."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 207.62,
+      "end": 211.98000000000002,
+      "text": " Equally important or even more important than making sure you have"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 211.98000000000002,
+      "end": 216.10000000000002,
+      "text": " great tools is making sure you know how to apply them."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 216.10000000000002,
+      "end": 219.62,
+      "text": " Because what good is it if someone were to give you"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 219.62,
+      "end": 223.58,
+      "text": " a state-of-the-art hammer or a state-of-the-art hand drill and say,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 223.58,
+      "end": 227.18,
+      "text": " good luck, now you have all the tools you need to build a three-story house."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 227.18,
+      "end": 229.3,
+      "text": " Doesn't really work like that."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 229.3,
+      "end": 232.10000000000002,
+      "text": " So too in machine learning,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 232.10000000000002,
+      "end": 234.94,
+      "text": " making sure you have the tools is really important,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 234.94,
+      "end": 237.38000000000002,
+      "text": " and so it's making sure that you know how to"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 237.38000000000002,
+      "end": 240.70000000000002,
+      "text": " apply the tools of machine learning effectively."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 240.70000000000002,
+      "end": 242.70000000000002,
+      "text": " That's what you get in this class,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 242.70000000000002,
+      "end": 246.62,
+      "text": " the tools as well as the skills that apply them effectively."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 246.62,
+      "end": 251.62,
+      "text": " I regularly visit with friends and teams in some of the top tech companies,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 251.62,
+      "end": 255.22,
+      "text": " and even today I see experienced machine learning teams"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 255.22,
+      "end": 258.74,
+      "text": " apply machine learning algorithms to some problems,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 258.74,
+      "end": 263.46,
+      "text": " and sometimes they've been going at it for six months without much success."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 263.46,
+      "end": 265.38,
+      "text": " When I look at what they're doing,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 265.38,
+      "end": 268.5,
+      "text": " I sometimes feel like I could have told them six months ago that"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 268.5,
+      "end": 270.78000000000003,
+      "text": " the current approach won't work and there's"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 270.78000000000003,
+      "end": 275.54,
+      "text": " a different way of using these tools that will give them a much better chance of success."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 275.54,
+      "end": 276.98,
+      "text": " So in this class,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 276.98,
+      "end": 279.9,
+      "text": " one of the relatively unique things you learn is,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 279.94,
+      "end": 282.94,
+      "text": " you learn a lot about the best practices for how to actually"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 282.94,
+      "end": 287.06,
+      "text": " develop a practical, valuable machine learning system."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 287.06,
+      "end": 290.41999999999996,
+      "text": " This way, you're less likely to end up in one of those teams that"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 290.41999999999996,
+      "end": 294.14,
+      "text": " end up losing six months going in the wrong direction."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 294.14,
+      "end": 296.73999999999995,
+      "text": " In this class, you gain a sense of how"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 296.73999999999995,
+      "end": 299.58,
+      "text": " the most skilled machine learning engineers build systems,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 299.58,
+      "end": 304.17999999999995,
+      "text": " and I hope you finish this class as one of those very rare people in"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 304.17999999999995,
+      "end": 309.29999999999995,
+      "text": " today's world that know how to design and build serious machine learning systems."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 309.46000000000004,
+      "end": 311.54,
+      "text": " So that's machine learning."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 311.54,
+      "end": 313.06,
+      "text": " In the next video,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 313.06,
+      "end": 316.46000000000004,
+      "text": " let's look more deeply at what is supervised learning,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 316.46000000000004,
+      "end": 319.54,
+      "text": " and also what is unsupervised learning."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 319.54,
+      "end": 323.34000000000003,
+      "text": " In addition, you learn when you might want to use each of them,"
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 323.34000000000003,
+      "end": 325.66,
+      "text": " supervised and unsupervised learning."
+    },
+    {
+      "number": "03",
+      "title": "",
+      "start": 325.66,
+      "end": 328.46000000000004,
+      "text": " I'll see you in the next video."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 0.0,
+      "end": 5.0,
+      "text": " Machine learning is creating tremendous economic value today."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 5.0,
+      "end": 14.0,
+      "text": " I think 99% of the economic value created by machine learning today is through one type of machine learning, which is called supervised learning."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 14.0,
+      "end": 16.0,
+      "text": " Let's take a look at what that means."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 16.0,
+      "end": 28.0,
+      "text": " Supervised machine learning, or more commonly supervised learning, refers to algorithms that learn X to Y, or input to output mappings."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 28.0,
+      "end": 39.0,
+      "text": " The key characteristic of supervised learning is that you give your learning algorithm examples to learn from that include the right answers,"
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 39.0,
+      "end": 45.0,
+      "text": " where by right answer I mean the correct label Y for a given input X."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 45.0,
+      "end": 58.0,
+      "text": " And it's by seeing correct pairs of input X and desired output label Y that the learning algorithm eventually learns to take just the input alone without the output label"
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 58.0,
+      "end": 63.0,
+      "text": " and gives a reasonably accurate prediction or guess of the output."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 63.0,
+      "end": 65.0,
+      "text": " Let's look at some examples."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 65.0,
+      "end": 73.0,
+      "text": " If the input X is an email and the output Y is this email spam or not spam,"
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 73.0,
+      "end": 76.0,
+      "text": " this gives you your spam filter."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 76.0,
+      "end": 85.0,
+      "text": " Or if the input is an audio clip and the algorithm's job is to output the text transcript,"
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 85.0,
+      "end": 89.0,
+      "text": " then this is speech recognition."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 89.0,
+      "end": 99.0,
+      "text": " Or if you want to input English and have it output the corresponding Spanish, Arabic, Hindi, Chinese, Japanese, or something else translation,"
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 99.0,
+      "end": 102.0,
+      "text": " then that's machine translation."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 103.0,
+      "end": 110.0,
+      "text": " Or the most lucrative form of supervised learning today is probably used in online advertising."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 110.0,
+      "end": 120.0,
+      "text": " Nearly all the large online ad platforms have a learning algorithm that inputs some information about an ad and some information about you,"
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 120.0,
+      "end": 124.0,
+      "text": " and then tries to figure out if you will click on that ad or not."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 124.0,
+      "end": 131.0,
+      "text": " Because by showing you ads that you're slightly more likely to click on, for these large online ad platforms, every click is revenue."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 131.0,
+      "end": 135.0,
+      "text": " This actually drives a lot of revenue for these companies."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 135.0,
+      "end": 140.0,
+      "text": " This is something that one's done a lot of work on, maybe not the most inspiring application,"
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 140.0,
+      "end": 145.0,
+      "text": " but it certainly has a significant economic impact in some companies today."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 145.0,
+      "end": 154.0,
+      "text": " Or if you want to build a self-driving car, the learning algorithm would take as input an image and some information from other sensors,"
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 154.0,
+      "end": 161.0,
+      "text": " such as a radar or other things, and then try to output the position of, say, other cars,"
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 161.0,
+      "end": 165.0,
+      "text": " so that your self-driving car can safely drive around the other cars."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 165.0,
+      "end": 172.0,
+      "text": " Or take manufacturing. I've actually done a lot of work in this sector at Lightning AI."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 172.0,
+      "end": 177.0,
+      "text": " You can have a learning algorithm take as input a picture of a manufactured product,"
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 177.0,
+      "end": 181.0,
+      "text": " say a cell phone that just rolled off the production line,"
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 181.0,
+      "end": 188.0,
+      "text": " and have the learning algorithm output whether or not there is a scratch, dent, or other defects in the product."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 188.0,
+      "end": 195.0,
+      "text": " This is called visual inspection and is helping manufacturers reduce or prevent defects in their products."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 196.0,
+      "end": 206.0,
+      "text": " In all of these applications, you would first train your model with examples of inputs X and the right answers, that is, the labels Y."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 206.0,
+      "end": 210.0,
+      "text": " After the model has learned from these input-output or X and Y pairs,"
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 210.0,
+      "end": 219.0,
+      "text": " it can then take a brand new input X, something it's never seen before, and try to produce the appropriate corresponding output Y."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 220.0,
+      "end": 224.0,
+      "text": " Let's dive more deeply into one specific example."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 224.0,
+      "end": 229.0,
+      "text": " Say you want to predict housing prices based on the size of the house."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 229.0,
+      "end": 235.0,
+      "text": " You've collected some data, and say you plot the data, and it looks like this."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 235.0,
+      "end": 239.0,
+      "text": " Here on the horizontal axis is the size of the house in square feet."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 239.0,
+      "end": 245.0,
+      "text": " And yes, I live in the United States where we still use square feet. I know most of the world uses square meters."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 246.0,
+      "end": 252.0,
+      "text": " And here on the vertical axis is the price of the house in, say, thousands of dollars."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 252.0,
+      "end": 261.0,
+      "text": " So with this data, let's say a friend wants to know what's the price for their 750 square foot house."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 261.0,
+      "end": 263.0,
+      "text": " How can the learning algorithm help you?"
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 263.0,
+      "end": 269.0,
+      "text": " One thing a learning algorithm might be able to do is, say, fit a straight line to the data."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 269.0,
+      "end": 277.0,
+      "text": " And reading off the straight line, it looks like your friend's house could be sold for maybe about, I don't know, $150,000?"
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 279.0,
+      "end": 282.0,
+      "text": " But fitting a straight line isn't the only learning algorithm you can use."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 282.0,
+      "end": 286.0,
+      "text": " There are others that could work better for this application."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 286.0,
+      "end": 292.0,
+      "text": " For example, rather than fitting a straight line, you might decide that it's better to fit a curve,"
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 292.0,
+      "end": 297.0,
+      "text": " a function that's slightly more complicated or more complex than a straight line."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 298.0,
+      "end": 307.0,
+      "text": " If you do that and make a prediction here, then it looks like, well, your friend's house could be sold for closer to $200,000."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 307.0,
+      "end": 319.0,
+      "text": " One of the things you see later in this class is how you can decide whether to fit a straight line, a curve, or another function that is even more complex to the data."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 319.0,
+      "end": 325.0,
+      "text": " Now, it doesn't seem appropriate to pick the one that gives your friend the best price."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 325.0,
+      "end": 335.0,
+      "text": " But one thing you see is how to get an algorithm to systematically choose the most appropriate line or curve or other thing to fit to this data."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 336.0,
+      "end": 341.0,
+      "text": " What you see in this slide is an example of supervised learning."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 341.0,
+      "end": 351.0,
+      "text": " Because we gave the algorithm a dataset in which the so-called right answer, that is, the label or the correct price Y, is given for every house on the plot,"
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 352.0,
+      "end": 357.0,
+      "text": " and the task of the learning algorithm is to produce more of these right answers,"
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 357.0,
+      "end": 363.0,
+      "text": " specifically predicting what is the likely price for other houses like your friend's house."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 363.0,
+      "end": 366.0,
+      "text": " That's why this is supervised learning."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 366.0,
+      "end": 374.0,
+      "text": " To define a little bit more terminology, this housing price prediction is a particular type of supervised learning called regression."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 374.0,
+      "end": 384.0,
+      "text": " And by regression, I mean we're trying to predict a number from infinitely many possible numbers, such as the house prices in our example,"
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 384.0,
+      "end": 393.0,
+      "text": " which could be $150,000 or $70,000 or $183,000 or any other number in between."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 393.0,
+      "end": 399.0,
+      "text": " So that's supervised learning, learning input-output or X to Y mappings."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 399.0,
+      "end": 405.0,
+      "text": " And you saw in this video an example of regression, where the task is to predict a number."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 405.0,
+      "end": 411.0,
+      "text": " But there's also a second major type of supervised learning problem called classification."
+    },
+    {
+      "number": "04",
+      "title": "",
+      "start": 411.0,
+      "end": 414.0,
+      "text": " Let's take a look at what that means in the next video."
+    }
+  ],
+  "texts_per_file": {
+    "01_": " Welcome to Machine Learning. What is Machine Learning? You probably use it many times a day without even knowing it. Anytime you want to find out something like, how do I make a sushi roll? You can do a web search on Google, Bing, or Baidu to find out. That works so well because the machine learning software has figured out how to rank web pages. Or when you upload pictures to Instagram or Snapchat and think to yourself, I want to tag my friends so they can see their pictures. Well, these apps can recognize your friends in your pictures and label them as well. That's also machine learning. Or if you've just finished watching a Star Wars movie on a video streaming service and you think, what are the similar movies that I watch? Well, the streaming service will likely use machine learning to recommend something that you might like. Each time you use voice to text on your phone to write a text message. Hey Andrew, how's it going? Or tell your phone, hey Siri, play a song by Rihanna. Or ask your other phone, okay Google, show me Indian restaurants near me. That's also machine learning. Each time you receive an e-mail titled, congratulations, you've won a million dollars. Well, maybe you're rich, congratulations. Or more likely, your e-mail service will probably flag it as spam. That too is an application of machine learning. Beyond consumer applications that you might use, AI is also rapidly making its way into big companies and into industrial applications. For example, I'm deeply concerned about climate change, and I'm glad to see that machine learning is already hoping to optimize wind turbine power generation. Or in healthcare, it's starting to make its way into hospitals to help doctors make accurate diagnoses. Or recently, at Learning AI, I've been doing a lot of work putting computer vision into factories to help inspect if something coming off the assembly line has any defects. That's machine learning. It's a science of getting computers to learn without being explicitly programmed. In this class, you learn about machine learning, and get to implement machine learning in code yourself. Millions of others have taken the earlier version of this course, which is a course that led to the founding of Coursera, and many learners ended up building exciting machine learning systems, or even pursuing very successful careers in AI. I'm excited that you're on this journey with me. Welcome, and let's get started.",
+    "02_": " In this class, you learn about the state of the art and also practice implementing machine learning algorithms yourself. You learn about the most important machine learning algorithms, some of which are exactly what's being used in large AI or large tech companies today. And you get a sense of what is the state of the art in AI. Beyond learning the algorithms though, in this class, you also learn all the important practical tips and tricks for making them perform well, and you get to implement them and see how they work for yourself. So why is machine learning so widely used today? Machine learning had grown up as a subfield of AI or artificial intelligence. We wanted to build intelligent machines, and it turns out that there are a few basic things that we could program a machine to do, such as how to find the shortest path from A to B, like in your GPS. But for the most part, we just did not know how to write an explicit program to do many of the more interesting things such as perform web search, recognize human speech, diagnose diseases from x-rays, or build a self-driving car. The only way we knew how to do these things was to have a machine learn to do it by itself. For me, when I founded and was leading the Google Brain team, I worked on problems like speech recognition, computer vision for Google Maps, Street View images, and advertising. Or leading AI at Baidu, I worked on everything from AI for augmented reality to combating payment fraud to leading a self-driving car team. Most recently at Landing AI, AI Fund at Stanford University, I've been getting to work on AI applications in manufacturing, large-scale agriculture, healthcare, e-commerce, and other problems. Today, there are hundreds of thousands, perhaps millions of people working on machine learning applications who could tell you similar stories about their work with machine learning. When you've learned these skills, I hope that you too will find it great fun to dabble in exciting different applications and maybe even different industries. In fact, I find it hard to think of any industry that machine learning is unlikely to touch in a significant way now or in the near future. Looking even further into the future, many people, including me, are excited about the AI dream of someday building machines as intelligent as you or me. This is sometimes called Artificial General Intelligence or AGI. I think AGI has been overhyped and we're still a long way away from that goal. I don't know if it'll take 50 years or 500 years or longer to get there, but most AI researchers believe that the best way to get closer to what that goal is by using learning algorithms, maybe ones that take some inspiration from how the human brain works. You'll also hear a little more about this quest for AGI later in this course. According to a study by McKinsey, AI and machine learning is estimated to create an additional $13 trillion of value annually by the year 2030. Even though machine learning is already creating tremendous amounts of value in the software industry, I think there could be even vastly greater value that is yet to be created outside the software industry in sectors such as retail, travel, transportation, automotive, materials manufacturing, and so on. Because of the massive untapped opportunities across so many different sectors, today there is a vast, untapped opportunity for AI to be able to meet the vast unfulfilled demand for this skill set. That's why this is such a great time to be learning about machine learning. If you find machine learning applications exciting, I hope you stick with me through this course. I can almost guarantee that you'll find mastering these skills worthwhile. In the next video, we'll look at a more formal definition of what is machine learning, and we'll begin to talk about the main types of machine learning problems and algorithms. You pick up some of the main machine learning terminology and start to get a sense of what are the different algorithms and when each one might be appropriate. So let's go on to the next video.",
+    "03_": " So, what is machine learning? In this video, you learn the definition of what it is, and also get a sense of when you might want to apply it. Let's take a look together. Here's a definition of what is machine learning that is attributed to Arthur Samuel. He defined machine learning as the field of study that gives computers the ability to learn without being explicitly programmed. Samuel's claim to fame was that back in the 1950s, he wrote the checkers playing program. The amazing thing about this program was that Arthur Samuel himself wasn't a very good checkers player. What he did was, he had programmed a computer to play maybe tens of thousands of games against itself. By watching what sorts of board positions tended to lead to wins, and what positions tended to lead to losses, the checkers playing program learned over time what are good or bad board positions. By trying to get to good and avoid bad positions, this program learned to get better and better at playing checkers. Because the computer had the patience to play tens of thousands of games against itself, it was able to get so much checkers playing experience that eventually it became a better checkers player than Arthur Samuel himself. Now, throughout these videos, besides me trying to talk about stuff, I'll occasionally ask you a question to help make sure you understand the content. Here's one about what happens if the computer had played far fewer games. Please take a look and pick whichever you think is a better answer. Thanks for looking at the quiz. So if you had selected this answer, would have made it worse, then you got it right. In general, the more opportunities you give a learning algorithm to learn, the better it will perform. If you didn't select the correct answer the first time, that's totally okay too. The point of these quiz questions isn't to see if you can get them all correct on the first try. These questions are here just to help you practice the concepts you're learning. Arthur Samuel's definition was a rather informal one, but in the next two videos, we'll dive deeper together into what are the major types of machine learning algorithms. In this class, you learn about many different learning algorithms. The two main types of machine learning are supervised learning and unsupervised learning. We'll define what these terms mean more in the next couple of videos. Of these two, supervised learning is the type of machine learning that is used most in many real-world applications and that has seen the most rapid advancement and innovation. In this specialization, which has three causes in total, the first and second causes will focus on supervised learning, and the third will focus on unsupervised learning, recommender systems, and reinforcement learning. By far, the most used types of learning algorithms today are supervised learning, unsupervised learning, and recommender systems. The other thing we're going to spend a lot of time on in this specialization is practical advice for applying learning algorithms. This is something I feel pretty strongly about. Teaching about learning algorithms is like giving someone a set of tools. Equally important or even more important than making sure you have great tools is making sure you know how to apply them. Because what good is it if someone were to give you a state-of-the-art hammer or a state-of-the-art hand drill and say, good luck, now you have all the tools you need to build a three-story house. Doesn't really work like that. So too in machine learning, making sure you have the tools is really important, and so it's making sure that you know how to apply the tools of machine learning effectively. That's what you get in this class, the tools as well as the skills that apply them effectively. I regularly visit with friends and teams in some of the top tech companies, and even today I see experienced machine learning teams apply machine learning algorithms to some problems, and sometimes they've been going at it for six months without much success. When I look at what they're doing, I sometimes feel like I could have told them six months ago that the current approach won't work and there's a different way of using these tools that will give them a much better chance of success. So in this class, one of the relatively unique things you learn is, you learn a lot about the best practices for how to actually develop a practical, valuable machine learning system. This way, you're less likely to end up in one of those teams that end up losing six months going in the wrong direction. In this class, you gain a sense of how the most skilled machine learning engineers build systems, and I hope you finish this class as one of those very rare people in today's world that know how to design and build serious machine learning systems. So that's machine learning. In the next video, let's look more deeply at what is supervised learning, and also what is unsupervised learning. In addition, you learn when you might want to use each of them, supervised and unsupervised learning. I'll see you in the next video.",
+    "04_": " Machine learning is creating tremendous economic value today. I think 99% of the economic value created by machine learning today is through one type of machine learning, which is called supervised learning. Let's take a look at what that means. Supervised machine learning, or more commonly supervised learning, refers to algorithms that learn X to Y, or input to output mappings. The key characteristic of supervised learning is that you give your learning algorithm examples to learn from that include the right answers, where by right answer I mean the correct label Y for a given input X. And it's by seeing correct pairs of input X and desired output label Y that the learning algorithm eventually learns to take just the input alone without the output label and gives a reasonably accurate prediction or guess of the output. Let's look at some examples. If the input X is an email and the output Y is this email spam or not spam, this gives you your spam filter. Or if the input is an audio clip and the algorithm's job is to output the text transcript, then this is speech recognition. Or if you want to input English and have it output the corresponding Spanish, Arabic, Hindi, Chinese, Japanese, or something else translation, then that's machine translation. Or the most lucrative form of supervised learning today is probably used in online advertising. Nearly all the large online ad platforms have a learning algorithm that inputs some information about an ad and some information about you, and then tries to figure out if you will click on that ad or not. Because by showing you ads that you're slightly more likely to click on, for these large online ad platforms, every click is revenue. This actually drives a lot of revenue for these companies. This is something that one's done a lot of work on, maybe not the most inspiring application, but it certainly has a significant economic impact in some companies today. Or if you want to build a self-driving car, the learning algorithm would take as input an image and some information from other sensors, such as a radar or other things, and then try to output the position of, say, other cars, so that your self-driving car can safely drive around the other cars. Or take manufacturing. I've actually done a lot of work in this sector at Lightning AI. You can have a learning algorithm take as input a picture of a manufactured product, say a cell phone that just rolled off the production line, and have the learning algorithm output whether or not there is a scratch, dent, or other defects in the product. This is called visual inspection and is helping manufacturers reduce or prevent defects in their products. In all of these applications, you would first train your model with examples of inputs X and the right answers, that is, the labels Y. After the model has learned from these input-output or X and Y pairs, it can then take a brand new input X, something it's never seen before, and try to produce the appropriate corresponding output Y. Let's dive more deeply into one specific example. Say you want to predict housing prices based on the size of the house. You've collected some data, and say you plot the data, and it looks like this. Here on the horizontal axis is the size of the house in square feet. And yes, I live in the United States where we still use square feet. I know most of the world uses square meters. And here on the vertical axis is the price of the house in, say, thousands of dollars. So with this data, let's say a friend wants to know what's the price for their 750 square foot house. How can the learning algorithm help you? One thing a learning algorithm might be able to do is, say, fit a straight line to the data. And reading off the straight line, it looks like your friend's house could be sold for maybe about, I don't know, $150,000? But fitting a straight line isn't the only learning algorithm you can use. There are others that could work better for this application. For example, rather than fitting a straight line, you might decide that it's better to fit a curve, a function that's slightly more complicated or more complex than a straight line. If you do that and make a prediction here, then it looks like, well, your friend's house could be sold for closer to $200,000. One of the things you see later in this class is how you can decide whether to fit a straight line, a curve, or another function that is even more complex to the data. Now, it doesn't seem appropriate to pick the one that gives your friend the best price. But one thing you see is how to get an algorithm to systematically choose the most appropriate line or curve or other thing to fit to this data. What you see in this slide is an example of supervised learning. Because we gave the algorithm a dataset in which the so-called right answer, that is, the label or the correct price Y, is given for every house on the plot, and the task of the learning algorithm is to produce more of these right answers, specifically predicting what is the likely price for other houses like your friend's house. That's why this is supervised learning. To define a little bit more terminology, this housing price prediction is a particular type of supervised learning called regression. And by regression, I mean we're trying to predict a number from infinitely many possible numbers, such as the house prices in our example, which could be $150,000 or $70,000 or $183,000 or any other number in between. So that's supervised learning, learning input-output or X to Y mappings. And you saw in this video an example of regression, where the task is to predict a number. But there's also a second major type of supervised learning problem called classification. Let's take a look at what that means in the next video."
+  }
+}

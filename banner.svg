@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0c29"/>
+      <stop offset="50%" style="stop-color:#302b63"/>
+      <stop offset="100%" style="stop-color:#24243e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d2ff"/>
+      <stop offset="100%" style="stop-color:#7b2ff7"/>
+    </linearGradient>
+    <linearGradient id="nodeGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d2ff;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#7b2ff7;stop-opacity:0.6"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="300" fill="url(#bg)"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.05" stroke="#ffffff" stroke-width="0.5">
+    <line x1="0" y1="50" x2="1200" y2="50"/>
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="150" x2="1200" y2="150"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="250" x2="1200" y2="250"/>
+    <line x1="100" y1="0" x2="100" y2="300"/>
+    <line x1="200" y1="0" x2="200" y2="300"/>
+    <line x1="300" y1="0" x2="300" y2="300"/>
+    <line x1="400" y1="0" x2="400" y2="300"/>
+    <line x1="500" y1="0" x2="500" y2="300"/>
+    <line x1="600" y1="0" x2="600" y2="300"/>
+    <line x1="700" y1="0" x2="700" y2="300"/>
+    <line x1="800" y1="0" x2="800" y2="300"/>
+    <line x1="900" y1="0" x2="900" y2="300"/>
+    <line x1="1000" y1="0" x2="1000" y2="300"/>
+    <line x1="1100" y1="0" x2="1100" y2="300"/>
+  </g>
+
+  <!-- Knowledge Graph Nodes and Edges (right side decoration) -->
+  <g filter="url(#softGlow)" opacity="0.4">
+    <!-- Edges -->
+    <line x1="870" y1="80" x2="950" y2="150" stroke="#00d2ff" stroke-width="1.5" opacity="0.5"/>
+    <line x1="950" y1="150" x2="1050" y2="100" stroke="#7b2ff7" stroke-width="1.5" opacity="0.5"/>
+    <line x1="950" y1="150" x2="1000" y2="230" stroke="#00d2ff" stroke-width="1.5" opacity="0.5"/>
+    <line x1="1050" y1="100" x2="1120" y2="180" stroke="#7b2ff7" stroke-width="1.5" opacity="0.5"/>
+    <line x1="1000" y1="230" x2="1120" y2="180" stroke="#00d2ff" stroke-width="1.5" opacity="0.5"/>
+    <line x1="870" y1="80" x2="800" y2="160" stroke="#7b2ff7" stroke-width="1.5" opacity="0.4"/>
+    <line x1="800" y1="160" x2="870" y2="240" stroke="#00d2ff" stroke-width="1.5" opacity="0.4"/>
+    <line x1="870" y1="240" x2="1000" y2="230" stroke="#7b2ff7" stroke-width="1.5" opacity="0.4"/>
+  </g>
+
+  <!-- Graph Nodes -->
+  <g filter="url(#glow)">
+    <circle cx="870" cy="80" r="6" fill="url(#nodeGlow)" stroke="#00d2ff" stroke-width="1.5"/>
+    <circle cx="950" cy="150" r="8" fill="url(#nodeGlow)" stroke="#7b2ff7" stroke-width="1.5"/>
+    <circle cx="1050" cy="100" r="5" fill="url(#nodeGlow)" stroke="#00d2ff" stroke-width="1.5"/>
+    <circle cx="1000" cy="230" r="7" fill="url(#nodeGlow)" stroke="#7b2ff7" stroke-width="1.5"/>
+    <circle cx="1120" cy="180" r="5" fill="url(#nodeGlow)" stroke="#00d2ff" stroke-width="1.5"/>
+    <circle cx="800" cy="160" r="5" fill="url(#nodeGlow)" stroke="#7b2ff7" stroke-width="1.5"/>
+    <circle cx="870" cy="240" r="4" fill="url(#nodeGlow)" stroke="#00d2ff" stroke-width="1.5"/>
+  </g>
+
+  <!-- Left side: small decorative nodes -->
+  <g filter="url(#softGlow)" opacity="0.25">
+    <line x1="40" y1="60" x2="100" y2="120" stroke="#00d2ff" stroke-width="1"/>
+    <line x1="100" y1="120" x2="60" y2="200" stroke="#7b2ff7" stroke-width="1"/>
+    <line x1="100" y1="120" x2="160" y2="180" stroke="#00d2ff" stroke-width="1"/>
+    <circle cx="40" cy="60" r="3" fill="#00d2ff"/>
+    <circle cx="100" cy="120" r="4" fill="#7b2ff7"/>
+    <circle cx="60" cy="200" r="3" fill="#00d2ff"/>
+    <circle cx="160" cy="180" r="3" fill="#7b2ff7"/>
+  </g>
+
+  <!-- Brain / AI icon -->
+  <g transform="translate(230, 90)" filter="url(#glow)">
+    <circle cx="0" cy="0" r="35" fill="none" stroke="url(#accent)" stroke-width="2" opacity="0.8"/>
+    <circle cx="0" cy="0" r="25" fill="none" stroke="url(#accent)" stroke-width="1" opacity="0.4"/>
+    <!-- Simplified brain paths -->
+    <path d="M-12,-15 Q-18,-5 -12,5 Q-18,15 -8,18" fill="none" stroke="#00d2ff" stroke-width="2" stroke-linecap="round"/>
+    <path d="M12,-15 Q18,-5 12,5 Q18,15 8,18" fill="none" stroke="#7b2ff7" stroke-width="2" stroke-linecap="round"/>
+    <path d="M-5,-18 Q0,-10 5,-18" fill="none" stroke="#00d2ff" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M-5,18 Q0,10 5,18" fill="none" stroke="#7b2ff7" stroke-width="1.5" stroke-linecap="round"/>
+    <circle cx="-8" cy="-5" r="2" fill="#00d2ff" opacity="0.8"/>
+    <circle cx="8" cy="-5" r="2" fill="#7b2ff7" opacity="0.8"/>
+    <circle cx="0" cy="8" r="2" fill="#00d2ff" opacity="0.8"/>
+  </g>
+
+  <!-- Title Text -->
+  <text x="290" y="95" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="48" fill="#ffffff" letter-spacing="-1">
+    InferaMind AI
+  </text>
+
+  <!-- Accent line -->
+  <rect x="290" y="110" width="180" height="3" rx="1.5" fill="url(#accent)" opacity="0.8"/>
+
+  <!-- Subtitle -->
+  <text x="290" y="145" font-family="'Segoe UI', Arial, sans-serif" font-weight="400" font-size="20" fill="#a0a0c0">
+    Scalable ML Tutoring System
+  </text>
+
+  <!-- Tech badges -->
+  <g transform="translate(290, 170)">
+    <!-- LangChain badge -->
+    <rect x="0" y="0" width="100" height="26" rx="13" fill="#00d2ff" fill-opacity="0.15" stroke="#00d2ff" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="50" y="17" font-family="'Segoe UI', Arial, sans-serif" font-weight="600" font-size="12" fill="#00d2ff" text-anchor="middle">LangChain</text>
+
+    <!-- LangGraph badge -->
+    <rect x="112" y="0" width="100" height="26" rx="13" fill="#7b2ff7" fill-opacity="0.15" stroke="#7b2ff7" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="162" y="17" font-family="'Segoe UI', Arial, sans-serif" font-weight="600" font-size="12" fill="#9b6dff" text-anchor="middle">LangGraph</text>
+
+    <!-- RAGAS badge -->
+    <rect x="224" y="0" width="80" height="26" rx="13" fill="#00d2ff" fill-opacity="0.15" stroke="#00d2ff" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="264" y="17" font-family="'Segoe UI', Arial, sans-serif" font-weight="600" font-size="12" fill="#00d2ff" text-anchor="middle">RAGAS</text>
+
+    <!-- FAISS badge -->
+    <rect x="316" y="0" width="72" height="26" rx="13" fill="#7b2ff7" fill-opacity="0.15" stroke="#7b2ff7" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="352" y="17" font-family="'Segoe UI', Arial, sans-serif" font-weight="600" font-size="12" fill="#9b6dff" text-anchor="middle">FAISS</text>
+
+    <!-- Ollama badge -->
+    <rect x="400" y="0" width="80" height="26" rx="13" fill="#00d2ff" fill-opacity="0.15" stroke="#00d2ff" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="440" y="17" font-family="'Segoe UI', Arial, sans-serif" font-weight="600" font-size="12" fill="#00d2ff" text-anchor="middle">Ollama</text>
+  </g>
+
+  <!-- Description -->
+  <text x="290" y="230" font-family="'Segoe UI', Arial, sans-serif" font-weight="300" font-size="14" fill="#8080a0">
+    LangGraph-Orchestrated RAG + Embeddings Classifier + RAGAS Eval
+  </text>
+  <text x="290" y="250" font-family="'Segoe UI', Arial, sans-serif" font-weight="300" font-size="14" fill="#8080a0">
+    React + FastAPI + Local LLMs + Real-time Streaming
+  </text>
+
+  <!-- Bottom accent line -->
+  <rect x="0" y="296" width="1200" height="4" fill="url(#accent)" opacity="0.6"/>
+</svg>

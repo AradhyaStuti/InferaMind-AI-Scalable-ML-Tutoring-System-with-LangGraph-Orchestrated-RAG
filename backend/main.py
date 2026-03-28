@@ -1,0 +1,138 @@
+"""FastAPI application entry point with auth, rate limiting, and CORS."""
+
+import os
+import time
+import logging
+
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse, JSONResponse
+from slowapi import Limiter
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
+from slowapi.middleware import SlowAPIMiddleware
+
+from backend.config import EMBED_MODEL, LLM_MODEL, EMBEDDINGS_PATH
+from backend.rag.embeddings import embedding_service
+from backend.db.store import init_db
+from backend.auth.security import init_auth_db
+from backend.routes.auth import router as auth_router  # noqa: E402
+from backend.routes.chat import router as chat_router  # noqa: E402
+from backend.routes.conversations import router as conv_router  # noqa: E402
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+request_logger = logging.getLogger("backend.requests")
+
+# Rate limiter (shared instance for use in routes)
+limiter = Limiter(
+    key_func=get_remote_address,
+    enabled=os.getenv("RATE_LIMIT_ENABLED", "true").lower() == "true",
+)
+
+app = FastAPI(
+    title="InferaMind AI",
+    version="2.0.0",
+    description="RAG-powered AI tutor with LangChain + LangGraph",
+)
+
+app.state.limiter = limiter
+app.add_middleware(SlowAPIMiddleware)
+
+
+@app.exception_handler(RateLimitExceeded)
+async def rate_limit_handler(request: Request, exc: RateLimitExceeded):
+    return JSONResponse(
+        status_code=429,
+        content={"detail": "Too many requests. Please slow down."},
+    )
+
+
+ALLOWED_ORIGINS = os.getenv(
+    "ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:8000"
+).split(",")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=ALLOWED_ORIGINS,
+    allow_methods=["GET", "POST", "PATCH", "DELETE"],
+    allow_headers=["Content-Type", "Authorization"],
+)
+
+# Request logging middleware
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    if request.url.path.startswith("/api"):
+        start = time.time()
+        response = await call_next(request)
+        ms = round((time.time() - start) * 1000)
+        request_logger.info(
+            "%s %s %s %dms",
+            request.method, request.url.path, response.status_code, ms,
+        )
+        return response
+    return await call_next(request)
+
+
+app.include_router(auth_router)
+app.include_router(chat_router)
+app.include_router(conv_router)
+
+
+@app.on_event("startup")
+def startup():
+    init_db()
+    init_auth_db()
+
+    if not os.path.isfile(EMBEDDINGS_PATH):
+        logger.error(f"Embeddings file not found: {EMBEDDINGS_PATH}")
+        raise FileNotFoundError(f"Missing {EMBEDDINGS_PATH}")
+
+    embedding_service.load()
+    logger.info("Application startup complete")
+
+
+@app.get("/api/health")
+def health():
+    from backend.rag.generator import ollama_breaker
+    return {
+        "status": "ok",
+        "chunks_loaded": len(embedding_service.df) if embedding_service.df is not None else 0,
+        "embedding_model": EMBED_MODEL,
+        "llm_model": LLM_MODEL,
+        "cache": embedding_service.cache_stats,
+        "ollama_circuit_open": ollama_breaker.is_open,
+    }
+
+
+# Serve React SPA — use middleware to avoid route conflicts with API
+FRONTEND_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend", "dist")
+
+if os.path.exists(FRONTEND_DIR):
+    from starlette.middleware.base import BaseHTTPMiddleware
+    import mimetypes
+
+    class SPAMiddleware(BaseHTTPMiddleware):
+        async def dispatch(self, request, call_next):
+            path = request.url.path
+
+            # Let API requests pass through to FastAPI routes
+            if path.startswith("/api"):
+                return await call_next(request)
+
+            # Serve static assets from /assets/
+            if path.startswith("/assets/"):
+                file_path = os.path.join(FRONTEND_DIR, path.lstrip("/"))
+                if os.path.isfile(file_path):
+                    content_type = mimetypes.guess_type(file_path)[0] or "application/octet-stream"
+                    return FileResponse(file_path, media_type=content_type)
+
+            # Serve index.html for all other GET requests (SPA routing)
+            if request.method == "GET":
+                index_path = os.path.join(FRONTEND_DIR, "index.html")
+                if os.path.isfile(index_path):
+                    return FileResponse(index_path)
+
+            return await call_next(request)
+
+    app.add_middleware(SPAMiddleware)

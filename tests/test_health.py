@@ -1,16 +1,25 @@
 """Test health and general endpoints."""
 
+from tests.conftest import requires_embeddings
+
 
 def test_health_endpoint(client):
     res = client.get("/api/health")
     assert res.status_code == 200
     data = res.json()
     assert data["status"] == "ok"
-    assert data["chunks_loaded"] > 0
     assert data["embedding_model"] == "bge-m3"
     assert data["llm_model"] == "llama3.2"
 
 
+@requires_embeddings
+def test_health_chunks_loaded(client):
+    res = client.get("/api/health")
+    data = res.json()
+    assert data["chunks_loaded"] > 0
+
+
+@requires_embeddings
 def test_frontend_served(client):
     res = client.get("/")
     assert res.status_code == 200

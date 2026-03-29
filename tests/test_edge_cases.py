@@ -1,6 +1,7 @@
 """Edge case and security tests."""
 
 import os
+from tests.conftest import requires_embeddings
 
 
 def test_expired_token(client):
@@ -81,6 +82,7 @@ def test_conversations_list_after_delete(client, auth_headers):
     assert conv["id"] not in ids
 
 
+@requires_embeddings
 def test_messages_cascade_delete(client, auth_headers):
     """Deleting a conversation should delete its messages."""
     # Create conversation with a message via chat

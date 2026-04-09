@@ -5,6 +5,7 @@ __pycache__/
 # Virtual envs
 venv/
 .env/
+.env
 .venv/
 
 # Large / generated files (do NOT commit)

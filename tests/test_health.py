@@ -1,5 +1,7 @@
 """Test health and general endpoints."""
 
+from backend.config import LLM_MODEL, LLM_PROVIDER
+
 
 def test_health_endpoint(client):
     res = client.get("/api/health")
@@ -7,7 +9,8 @@ def test_health_endpoint(client):
     data = res.json()
     assert data["status"] == "ok"
     assert data["embedding_model"] == "bge-m3"
-    assert data["llm_model"] == "llama3.2"
+    assert data["llm_model"] == LLM_MODEL
+    assert data["llm_provider"] == LLM_PROVIDER
 
 
 def test_chat_requires_auth(client):

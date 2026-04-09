@@ -69,7 +69,7 @@ export default memo(function InputArea({ onSend, disabled, onCancel }) {
       </div>
       <div className="input-footer">
         <p className="input-hint">
-          <strong>LangChain</strong> &middot; <strong>LangGraph</strong> &middot; <strong>FAISS</strong> &middot; <strong>LLaMA 3.2</strong> &mdash; Enter to send
+          <strong>LangChain</strong> &middot; <strong>LangGraph</strong> &middot; <strong>FAISS</strong> &middot; <strong>Ollama</strong> &middot; <strong>LLaMA 3.2</strong> &mdash; Enter to send
         </p>
         {text.length > 0 && (
           <span className={`char-count ${nearLimit ? 'warn' : ''} ${atLimit ? 'limit' : ''}`}>

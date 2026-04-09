@@ -1,15 +1,28 @@
-"""LangChain-based LLM generation with circuit breaker and retry logic."""
+"""LangChain-based LLM generation with provider abstraction, circuit breaker, and retry logic.
+
+Supports two providers:
+  - "groq"   → ChatGroq  (cloud, fast, large models like llama-3.3-70b)
+  - "ollama" → ChatOllama (local, no API key needed)
+
+Supports two generation modes:
+  - RAG mode      → answers grounded in retrieved video transcripts
+  - Direct mode   → answers ML questions from the model's own knowledge (when not in videos)
+"""
 
 import logging
 import time
 import threading
 
-from langchain_ollama import ChatOllama
+from langchain_core.language_models.chat_models import BaseChatModel
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain_core.output_parsers import StrOutputParser
 
-from backend.config import OLLAMA_URL, LLM_MODEL, LLM_TIMEOUT
+from backend.config import (
+    LLM_PROVIDER, LLM_TIMEOUT,
+    OLLAMA_URL, OLLAMA_LLM_MODEL,
+    GROQ_API_KEY, GROQ_LLM_MODEL,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -50,16 +63,51 @@ class CircuitBreaker:
             self._last_failure_time = time.time()
 
 
-ollama_breaker = CircuitBreaker(failure_threshold=3, recovery_timeout=30)
+llm_breaker = CircuitBreaker(failure_threshold=3, recovery_timeout=30)
+
+# Keep backward-compatible alias for health endpoint
+ollama_breaker = llm_breaker
 
 
-# ─── LLM Setup ────────────────────────────────────────────────
+# ─── Provider-Agnostic LLM Factory ───────────────────────────
 
-llm = ChatOllama(
-    model=LLM_MODEL,
-    base_url=OLLAMA_URL,
-    timeout=LLM_TIMEOUT,
-)
+def _create_llm() -> BaseChatModel:
+    """Create LLM instance based on configured provider."""
+    if LLM_PROVIDER == "groq":
+        if not GROQ_API_KEY:
+            logger.warning(
+                "LLM_PROVIDER=groq but GROQ_API_KEY is empty — falling back to Ollama"
+            )
+            return _create_ollama_llm()
+        return _create_groq_llm()
+    return _create_ollama_llm()
+
+
+def _create_groq_llm() -> BaseChatModel:
+    from langchain_groq import ChatGroq
+    logger.info("LLM provider: Groq (%s)", GROQ_LLM_MODEL)
+    return ChatGroq(
+        model=GROQ_LLM_MODEL,
+        api_key=GROQ_API_KEY,
+        temperature=0.3,
+        max_tokens=1024,
+    )
+
+
+def _create_ollama_llm() -> BaseChatModel:
+    from langchain_ollama import ChatOllama
+    logger.info("LLM provider: Ollama (%s)", OLLAMA_LLM_MODEL)
+    return ChatOllama(
+        model=OLLAMA_LLM_MODEL,
+        base_url=OLLAMA_URL,
+        timeout=LLM_TIMEOUT,
+    )
+
+
+llm = _create_llm()
+
+
+# ─── Prompts ─────────────────────────────────────────────────
 
 RAG_PROMPT = ChatPromptTemplate.from_messages(
     [
@@ -84,6 +132,28 @@ Instructions:
     ]
 )
 
+DIRECT_KNOWLEDGE_PROMPT = ChatPromptTemplate.from_messages(
+    [
+        (
+            "system",
+            """You are an AI teaching assistant for Andrew Ng's Machine Learning Specialization.
+The student asked a machine learning question that isn't directly covered in the course videos you have access to.
+
+Answer from your own knowledge as a knowledgeable ML tutor. Be accurate and educational.
+
+Instructions:
+- Start with: "This topic isn't covered in the course videos I have, but here's what I can tell you:"
+- Give a clear, correct, and thorough explanation
+- Use examples and analogies where helpful
+- Use markdown formatting for readability (bold, lists, code blocks, etc.)
+- If the topic connects to something in the course (supervised/unsupervised learning, regression, gradient descent, neural networks, etc.), mention how it relates
+- Be honest about the limits of your explanation — don't fabricate citations or sources""",
+        ),
+        MessagesPlaceholder(variable_name="chat_history"),
+        ("human", "{question}"),
+    ]
+)
+
 TITLE_PROMPT = ChatPromptTemplate.from_messages(
     [
         (
@@ -96,6 +166,7 @@ TITLE_PROMPT = ChatPromptTemplate.from_messages(
 
 # Pre-build chains as singletons
 rag_chain = RAG_PROMPT | llm | StrOutputParser()
+direct_chain = DIRECT_KNOWLEDGE_PROMPT | llm | StrOutputParser()
 title_chain = TITLE_PROMPT | llm | StrOutputParser()
 
 
@@ -129,12 +200,19 @@ def _build_rag_input(question, sources, history):
     }
 
 
+def _build_direct_input(question, history):
+    return {
+        "chat_history": format_chat_history(history or []),
+        "question": question,
+    }
+
+
 def stream_tokens(question: str, sources: list[dict], history: list[dict] = None):
-    """Stream response tokens with circuit breaker and retry."""
-    if ollama_breaker.is_open:
+    """Stream RAG response tokens with circuit breaker and retry."""
+    if llm_breaker.is_open:
         yield (
             "I'm having trouble connecting to the AI model right now. "
-            "Please try again in a few seconds. Make sure Ollama is running."
+            "Please try again in a few seconds."
         )
         return
 
@@ -144,15 +222,15 @@ def stream_tokens(question: str, sources: list[dict], history: list[dict] = None
         try:
             for token in rag_chain.stream(inputs):
                 yield token
-            ollama_breaker.record_success()
+            llm_breaker.record_success()
             return
         except Exception as e:
             if attempt == MAX_RETRIES - 1:
-                ollama_breaker.record_failure()
+                llm_breaker.record_failure()
                 logger.error(f"Stream failed after {MAX_RETRIES} retries: {e}")
                 yield (
                     "\n\nI couldn't generate a response. "
-                    "Please check that Ollama is running and try again."
+                    "Please check your LLM configuration and try again."
                 )
                 return
             wait = RETRY_DELAY * (2 ** attempt)
@@ -160,15 +238,46 @@ def stream_tokens(question: str, sources: list[dict], history: list[dict] = None
             time.sleep(wait)
 
 
+def stream_direct_tokens(question: str, history: list[dict] = None):
+    """Stream direct-knowledge response tokens (no RAG context)."""
+    if llm_breaker.is_open:
+        yield (
+            "I'm having trouble connecting to the AI model right now. "
+            "Please try again in a few seconds."
+        )
+        return
+
+    inputs = _build_direct_input(question, history)
+
+    for attempt in range(MAX_RETRIES):
+        try:
+            for token in direct_chain.stream(inputs):
+                yield token
+            llm_breaker.record_success()
+            return
+        except Exception as e:
+            if attempt == MAX_RETRIES - 1:
+                llm_breaker.record_failure()
+                logger.error(f"Direct stream failed after {MAX_RETRIES} retries: {e}")
+                yield (
+                    "\n\nI couldn't generate a response. "
+                    "Please check your LLM configuration and try again."
+                )
+                return
+            wait = RETRY_DELAY * (2 ** attempt)
+            logger.warning(f"Direct stream attempt {attempt + 1} failed: {e}. Retrying in {wait}s...")
+            time.sleep(wait)
+
+
 def generate_title(question: str) -> str:
-    if ollama_breaker.is_open:
+    if llm_breaker.is_open:
         return question[:50]
 
     try:
         result = title_chain.invoke({"question": question})
-        ollama_breaker.record_success()
+        llm_breaker.record_success()
         return result.strip().strip('"')[:200]
     except Exception as e:
-        ollama_breaker.record_failure()
+        llm_breaker.record_failure()
         logger.warning(f"Title generation failed: {e}")
         return question[:50]

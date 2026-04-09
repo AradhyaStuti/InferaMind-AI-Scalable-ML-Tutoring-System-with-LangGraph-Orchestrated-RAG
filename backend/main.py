@@ -12,7 +12,7 @@ from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
 
-from backend.config import EMBED_MODEL, LLM_MODEL, EMBEDDINGS_PATH
+from backend.config import EMBED_MODEL, LLM_MODEL, LLM_PROVIDER, EMBEDDINGS_PATH
 from backend.rag.embeddings import embedding_service
 from backend.db.store import init_db
 from backend.auth.security import init_auth_db
@@ -94,14 +94,15 @@ def startup():
 
 @app.get("/api/health")
 def health():
-    from backend.rag.generator import ollama_breaker
+    from backend.rag.generator import llm_breaker
     return {
         "status": "ok",
         "chunks_loaded": len(embedding_service.df) if embedding_service.df is not None else 0,
-        "embedding_model": EMBED_MODEL,
+        "llm_provider": LLM_PROVIDER,
         "llm_model": LLM_MODEL,
+        "embedding_model": EMBED_MODEL,
         "cache": embedding_service.cache_stats,
-        "ollama_circuit_open": ollama_breaker.is_open,
+        "llm_circuit_open": llm_breaker.is_open,
     }
 
 

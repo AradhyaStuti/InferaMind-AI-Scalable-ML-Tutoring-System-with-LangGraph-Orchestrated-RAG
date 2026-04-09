@@ -18,13 +18,27 @@ def _has_embeddings() -> bool:
     return os.path.isfile(EMBEDDINGS_PATH)
 
 
+def _ollama_reachable() -> bool:
+    """Check if Ollama is running and reachable."""
+    try:
+        import requests
+        r = requests.get(os.environ["OLLAMA_URL"], timeout=2)
+        return r.status_code == 200
+    except Exception:
+        return False
+
+
+_embeddings_available = _has_embeddings()
+_ollama_available = _ollama_reachable() if _embeddings_available else False
+
+
 @pytest.fixture(scope="session", autouse=True)
 def setup_app():
-    """Initialize app — loads embeddings only when the file exists."""
-    if _has_embeddings():
+    """Initialize app — loads embeddings only when file exists AND Ollama is reachable."""
+    if _embeddings_available and _ollama_available:
         startup()
     else:
-        # CI environment: init DB only, skip embeddings
+        # CI or no-Ollama environment: init DB only, skip embeddings
         init_db()
         init_auth_db()
     yield
@@ -35,8 +49,8 @@ def setup_app():
 
 
 requires_embeddings = pytest.mark.skipif(
-    not _has_embeddings(),
-    reason="embeddings.joblib not available (CI environment)",
+    not (_embeddings_available and _ollama_available),
+    reason="Requires embeddings.joblib + running Ollama",
 )
 
 

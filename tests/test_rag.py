@@ -1,6 +1,5 @@
-"""Test RAG pipeline — embeddings, graph, and classifier."""
+"""Test RAG pipeline — embeddings, graph, and 3-way classifier."""
 
-import pytest
 from tests.conftest import requires_embeddings
 
 from backend.rag.embeddings import embedding_service
@@ -32,22 +31,34 @@ class TestEmbeddingService:
 
 @requires_embeddings
 class TestGraphClassifier:
-    def test_classify_course_related(self):
+    def _classify(self, question: str) -> str:
         state = {
-            "question": "What is supervised learning?",
+            "question": question,
             "chat_history": [],
             "sources": [],
             "query_type": "",
         }
-        result = classify_node(state)
-        assert result["query_type"] == "course_related"
+        return classify_node(state)["query_type"]
+
+    def test_classify_course_related(self):
+        """Direct course topic → course_related (RAG from videos)."""
+        assert self._classify("What is supervised learning?") == "course_related"
 
     def test_classify_off_topic(self):
-        state = {
-            "question": "What is the best recipe for chocolate cake?",
-            "chat_history": [],
-            "sources": [],
-            "query_type": "",
-        }
-        result = classify_node(state)
-        assert result["query_type"] == "off_topic"
+        """Completely unrelated → off_topic (rejected)."""
+        assert self._classify("What is the best recipe for chocolate cake?") == "off_topic"
+
+    def test_classify_course_related_general(self):
+        """ML topic not directly in video anchors → course_related_general."""
+        result = self._classify("Explain transformers and attention mechanisms in deep learning")
+        assert result in ("course_related_general", "course_related")
+
+    def test_classify_returns_valid_type(self):
+        """All classifications must be one of the three valid types."""
+        for q in [
+            "What is gradient descent?",
+            "How do convolutional neural networks work?",
+            "Tell me a joke about cats",
+        ]:
+            result = self._classify(q)
+            assert result in ("course_related", "course_related_general", "off_topic")

@@ -15,7 +15,7 @@ from jose import JWTError, jwt
 from backend.config import MAX_MESSAGE_LENGTH, RATE_LIMIT_ENABLED, JWT_SECRET
 from backend.auth.security import get_current_user, ALGORITHM
 from backend.rag.graph import run_graph
-from backend.rag.generator import stream_tokens, generate_title
+from backend.rag.generator import stream_tokens, stream_direct_tokens, generate_title
 from backend.db.store import (
     create_conversation,
     add_message,
@@ -104,8 +104,9 @@ async def chat(request: Request, req: ChatRequest, user: dict = Depends(get_curr
             if query_type == "off_topic":
                 response = (
                     "I appreciate your question, but I'm designed to help with "
-                    "**course content** only. I can answer questions about topics "
-                    "covered in the course videos. Feel free to ask about those!"
+                    "**machine learning topics** only. I can answer questions about "
+                    "ML concepts, the course videos, and related topics. "
+                    "Feel free to ask about those!"
                 )
                 yield f"data: {json.dumps({'token': response})}\n\n"
                 add_message(conv_id, "assistant", response, [])
@@ -119,7 +120,15 @@ async def chat(request: Request, req: ChatRequest, user: dict = Depends(get_curr
 
                 full_response = []
                 token_count = 0
-                for token in stream_tokens(query, sources, history_for_context):
+
+                if query_type == "course_related_general":
+                    # ML topic but not in videos — LLM answers from own knowledge
+                    token_stream = stream_direct_tokens(query, history_for_context)
+                else:
+                    # In-video content — RAG with retrieved sources
+                    token_stream = stream_tokens(query, sources, history_for_context)
+
+                for token in token_stream:
                     full_response.append(token)
                     token_count += 1
                     yield f"data: {json.dumps({'token': token})}\n\n"
@@ -129,15 +138,15 @@ async def chat(request: Request, req: ChatRequest, user: dict = Depends(get_curr
 
                 elapsed = round(time.time() - stream_start, 2)
                 logger.info(
-                    "generate conv=%s tokens=%d chars=%d time=%ss",
-                    conv_id[:8], token_count, len(response), elapsed,
+                    "generate conv=%s type=%s tokens=%d chars=%d time=%ss",
+                    conv_id[:8], query_type, token_count, len(response), elapsed,
                 )
 
             yield f"data: {json.dumps({'done': True})}\n\n"
 
         except Exception as e:
             logger.error(f"Streaming failed: {e}")
-            yield f"data: {json.dumps({'error': 'Response generation failed. Is Ollama running?'})}\n\n"
+            yield f"data: {json.dumps({'error': 'Response generation failed'})}\n\n"
 
     return StreamingResponse(event_stream(), media_type="text/event-stream")
 
@@ -226,8 +235,9 @@ async def chat_ws(websocket: WebSocket):
                 if query_type == "off_topic":
                     response = (
                         "I appreciate your question, but I'm designed to help with "
-                        "**course content** only. I can answer questions about topics "
-                        "covered in the course videos. Feel free to ask about those!"
+                        "**machine learning topics** only. I can answer questions about "
+                        "ML concepts, the course videos, and related topics. "
+                        "Feel free to ask about those!"
                     )
                     await websocket.send_json({"token": response})
                     add_message(conv_id, "assistant", response, [])
@@ -242,7 +252,13 @@ async def chat_ws(websocket: WebSocket):
                     stream_start = time.time()
                     full_response = []
                     token_count = 0
-                    for token in stream_tokens(query, sources, history_for_context):
+
+                    if query_type == "course_related_general":
+                        token_stream = stream_direct_tokens(query, history_for_context)
+                    else:
+                        token_stream = stream_tokens(query, sources, history_for_context)
+
+                    for token in token_stream:
                         full_response.append(token)
                         token_count += 1
                         await websocket.send_json({"token": token})
@@ -252,8 +268,8 @@ async def chat_ws(websocket: WebSocket):
 
                     elapsed = round(time.time() - stream_start, 2)
                     logger.info(
-                        "ws_generate conv=%s tokens=%d chars=%d time=%ss",
-                        conv_id[:8], token_count, len(response), elapsed,
+                        "ws_generate conv=%s type=%s tokens=%d chars=%d time=%ss",
+                        conv_id[:8], query_type, token_count, len(response), elapsed,
                     )
 
                 await websocket.send_json({"done": True})

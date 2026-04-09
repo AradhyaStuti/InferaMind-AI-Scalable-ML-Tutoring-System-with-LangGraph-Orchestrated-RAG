@@ -54,7 +54,6 @@
 
   <!-- Knowledge Graph Nodes and Edges (right side decoration) -->
   <g filter="url(#softGlow)" opacity="0.4">
-    <!-- Edges -->
     <line x1="870" y1="80" x2="950" y2="150" stroke="#00d2ff" stroke-width="1.5" opacity="0.5"/>
     <line x1="950" y1="150" x2="1050" y2="100" stroke="#7b2ff7" stroke-width="1.5" opacity="0.5"/>
     <line x1="950" y1="150" x2="1000" y2="230" stroke="#00d2ff" stroke-width="1.5" opacity="0.5"/>
@@ -91,7 +90,6 @@
   <g transform="translate(230, 90)" filter="url(#glow)">
     <circle cx="0" cy="0" r="35" fill="none" stroke="url(#accent)" stroke-width="2" opacity="0.8"/>
     <circle cx="0" cy="0" r="25" fill="none" stroke="url(#accent)" stroke-width="1" opacity="0.4"/>
-    <!-- Simplified brain paths -->
     <path d="M-12,-15 Q-18,-5 -12,5 Q-18,15 -8,18" fill="none" stroke="#00d2ff" stroke-width="2" stroke-linecap="round"/>
     <path d="M12,-15 Q18,-5 12,5 Q18,15 8,18" fill="none" stroke="#7b2ff7" stroke-width="2" stroke-linecap="round"/>
     <path d="M-5,-18 Q0,-10 5,-18" fill="none" stroke="#00d2ff" stroke-width="1.5" stroke-linecap="round"/>
@@ -128,25 +126,25 @@
     <rect x="224" y="0" width="80" height="26" rx="13" fill="#00d2ff" fill-opacity="0.15" stroke="#00d2ff" stroke-width="1" stroke-opacity="0.4"/>
     <text x="264" y="17" font-family="'Segoe UI', Arial, sans-serif" font-weight="600" font-size="12" fill="#00d2ff" text-anchor="middle">RAGAS</text>
 
-    <!-- FAISS badge -->
-    <rect x="316" y="0" width="72" height="26" rx="13" fill="#7b2ff7" fill-opacity="0.15" stroke="#7b2ff7" stroke-width="1" stroke-opacity="0.4"/>
-    <text x="352" y="17" font-family="'Segoe UI', Arial, sans-serif" font-weight="600" font-size="12" fill="#9b6dff" text-anchor="middle">FAISS</text>
+    <!-- Groq badge -->
+    <rect x="316" y="0" width="72" height="26" rx="13" fill="#f55036" fill-opacity="0.15" stroke="#f55036" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="352" y="17" font-family="'Segoe UI', Arial, sans-serif" font-weight="600" font-size="12" fill="#f55036" text-anchor="middle">Groq</text>
 
     <!-- Ollama badge -->
     <rect x="400" y="0" width="80" height="26" rx="13" fill="#00d2ff" fill-opacity="0.15" stroke="#00d2ff" stroke-width="1" stroke-opacity="0.4"/>
     <text x="440" y="17" font-family="'Segoe UI', Arial, sans-serif" font-weight="600" font-size="12" fill="#00d2ff" text-anchor="middle">Ollama</text>
 
-    <!-- 38 Tests badge -->
+    <!-- 58 Tests badge -->
     <rect x="492" y="0" width="88" height="26" rx="13" fill="#22c55e" fill-opacity="0.15" stroke="#22c55e" stroke-width="1" stroke-opacity="0.4"/>
-    <text x="536" y="17" font-family="'Segoe UI', Arial, sans-serif" font-weight="600" font-size="12" fill="#22c55e" text-anchor="middle">38 Tests</text>
+    <text x="536" y="17" font-family="'Segoe UI', Arial, sans-serif" font-weight="600" font-size="12" fill="#22c55e" text-anchor="middle">58 Tests</text>
   </g>
 
   <!-- Description -->
   <text x="290" y="230" font-family="'Segoe UI', Arial, sans-serif" font-weight="300" font-size="14" fill="#8080a0">
-    LangGraph-Orchestrated RAG + Embeddings Classifier + RAGAS Eval
+    3-Way LangGraph RAG + Groq/Ollama Dual Provider + RAGAS Eval
   </text>
   <text x="290" y="250" font-family="'Segoe UI', Arial, sans-serif" font-weight="300" font-size="14" fill="#8080a0">
-    React + FastAPI + Local LLMs + SSE Streaming + CI/CD
+    React + FastAPI + FAISS + SSE Streaming + CI/CD
   </text>
 
   <!-- Bottom accent line -->

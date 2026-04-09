@@ -7,7 +7,7 @@ const features = [
   { icon: <Sparkles size={18} />, title: 'Smart Answers', desc: 'Context-aware LLM responses' },
 ];
 
-const techStack = ['LangChain', 'LangGraph', 'FAISS', 'LLaMA 3.2'];
+const techStack = ['LangChain', 'LangGraph', 'FAISS', 'Ollama', 'LLaMA 3.2'];
 
 export default function LandingScreen({ username, onStart, onLogout }) {
   return (

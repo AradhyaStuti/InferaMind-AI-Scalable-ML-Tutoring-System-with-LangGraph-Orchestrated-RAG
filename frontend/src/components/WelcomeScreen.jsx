@@ -16,7 +16,7 @@ export default function WelcomeScreen({ onSuggestionClick }) {
       <div className="welcome-bot">
         <RobotAvatar size={48} />
         <div>
-          <h2>InferaMind AI</h2>
+          <h2>RouteLM</h2>
           <p>Ask me anything about the ML course videos</p>
         </div>
       </div>

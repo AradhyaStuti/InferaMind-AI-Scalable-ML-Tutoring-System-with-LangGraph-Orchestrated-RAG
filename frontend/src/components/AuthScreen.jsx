@@ -23,7 +23,7 @@ export default function AuthScreen({ onLogin, onRegister, error, loading }) {
       <div className="auth-card">
         <div className="auth-header">
           <RobotMascot size={100} />
-          <h1>InferaMind AI</h1>
+          <h1>RouteLM</h1>
           <p>RAG-Powered Course Assistant</p>
         </div>
 

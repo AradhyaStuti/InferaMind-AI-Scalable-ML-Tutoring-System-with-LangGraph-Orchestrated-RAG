@@ -29,7 +29,7 @@ export default memo(function MessageBubble({ message, isStreaming, activeNode, i
       </div>
       <div className="message-body">
         <div className="message-header">
-          <span className="message-role">{isUser ? 'You' : 'InferaMind AI'}</span>
+          <span className="message-role">{isUser ? 'You' : 'RouteLM'}</span>
           <span className="message-time">{formatTimestamp(message.timestamp)}</span>
         </div>
 

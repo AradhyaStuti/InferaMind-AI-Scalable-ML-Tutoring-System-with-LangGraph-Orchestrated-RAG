@@ -46,7 +46,7 @@ class TestGraphClassifier:
 
     def test_classify_off_topic(self):
         """Completely unrelated → off_topic (rejected)."""
-        assert self._classify("What is the best recipe for chocolate cake?") == "off_topic"
+        assert self._classify("Who won the 2022 FIFA World Cup final?") == "off_topic"
 
     def test_classify_course_related_general(self):
         """ML topic not directly in video anchors → course_related_general."""

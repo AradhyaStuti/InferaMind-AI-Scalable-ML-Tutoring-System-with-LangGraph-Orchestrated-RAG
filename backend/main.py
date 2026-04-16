@@ -31,7 +31,7 @@ limiter = Limiter(
 )
 
 app = FastAPI(
-    title="InferaMind AI",
+    title="RouteLM",
     version="2.0.0",
     description="RAG-powered AI tutor with LangChain + LangGraph",
 )

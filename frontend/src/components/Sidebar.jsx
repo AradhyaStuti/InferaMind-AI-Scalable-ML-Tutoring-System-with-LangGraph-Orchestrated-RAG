@@ -54,7 +54,7 @@ export default memo(function Sidebar({
       <div className="sidebar-header">
         <div className="logo">
           <GraduationCap size={22} aria-hidden="true" />
-          {!collapsed && <span>InferaMind AI</span>}
+          {!collapsed && <span>RouteLM</span>}
         </div>
         <button
           className="collapse-btn"

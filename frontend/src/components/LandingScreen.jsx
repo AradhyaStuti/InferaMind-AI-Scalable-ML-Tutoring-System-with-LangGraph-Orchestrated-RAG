@@ -7,7 +7,7 @@ const features = [
   { icon: <Sparkles size={18} />, title: 'Smart Answers', desc: 'Context-aware LLM responses' },
 ];
 
-const techStack = ['LangChain', 'LangGraph', 'FAISS', 'Ollama', 'LLaMA 3.2'];
+const techStack = ['LangChain', 'LangGraph', 'FAISS', 'Groq', 'Ollama'];
 
 export default function LandingScreen({ username, onStart, onLogout }) {
   return (
@@ -21,7 +21,7 @@ export default function LandingScreen({ username, onStart, onLogout }) {
           <RobotMascot size={180} message="Click me to start chatting!" />
         </div>
 
-        <h1 className="landing-title">InferaMind AI</h1>
+        <h1 className="landing-title">RouteLM</h1>
         <p className="landing-subtitle">
           Hey <strong>{username}</strong>! I'm your AI teaching assistant for Andrew Ng's ML Specialization.
         </p>

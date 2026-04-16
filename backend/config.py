@@ -44,8 +44,8 @@ MAX_TITLE_LENGTH = 200
 # >= COURSE_THRESHOLD  → course_related (RAG from videos)
 # >= GENERAL_THRESHOLD → course_related_general (LLM answers from own knowledge)
 # < GENERAL_THRESHOLD  → off_topic (rejected)
-COURSE_THRESHOLD = float(os.getenv("COURSE_THRESHOLD", "0.35"))
-GENERAL_THRESHOLD = float(os.getenv("GENERAL_THRESHOLD", "0.20"))
+COURSE_THRESHOLD = float(os.getenv("COURSE_THRESHOLD", "0.58"))
+GENERAL_THRESHOLD = float(os.getenv("GENERAL_THRESHOLD", "0.55"))
 
 RATE_LIMIT_ENABLED = os.getenv("RATE_LIMIT_ENABLED", "true").lower() == "true"
 

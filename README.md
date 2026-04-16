@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="banner.svg" alt="InferaMind AI Banner" width="100%"/>
+  <img src="banner.svg" alt="RouteLM Banner" width="100%"/>
 </p>
 
-<h1 align="center">InferaMind AI: Scalable ML Tutoring System with LangChain, LangGraph & RAG Pipelines</h1>
+<h1 align="center">RouteLM — ML Tutor with LangGraph & RAG</h1>
 
 <p align="center">
   A full-stack RAG teaching assistant for Andrew Ng's ML Specialization — with a <b>3-way LangGraph classifier</b> that answers from video transcripts via RAG <i>or</i> from the LLM's own ML knowledge when content isn't in the videos.<br/>
@@ -24,7 +24,7 @@
 
 ---
 
-> **300-char description:** InferaMind AI is a RAG-powered ML tutoring system using LangGraph's 3-way classifier to answer from course videos (FAISS + BGE-M3) or the LLM's own knowledge via Groq/Ollama. Built with React, FastAPI, LangChain, RAGAS eval metrics, JWT auth, SSE streaming, and CI/CD.
+> **300-char description:** RouteLM is a RAG-powered ML tutoring system with a 3-way LangGraph classifier. Uses Groq's LLaMA 70B for fast LLM generation and Ollama's BGE-M3 for embeddings (Groq has no embedding API). Answers from course videos via FAISS or from LLM knowledge. React, FastAPI, RAGAS eval, JWT, SSE, CI/CD.
 
 ---
 
@@ -116,7 +116,7 @@ You can run the entire app with just Ollama (set `LLM_PROVIDER=ollama`). Groq ma
 ## Project Structure
 
 ```
-InferaMind-AI/
+RouteLM/
 ├── backend/
 │   ├── main.py              # FastAPI app entry point
 │   ├── config.py            # Config: providers, thresholds, env loading
@@ -260,9 +260,9 @@ START -> [Classify] --course_related--------> [Retrieve] -> END    (RAG from vid
 
 1. **User asks a question** via the chat UI
 2. **3-way classification** — the query is embedded and compared (cosine similarity) to a course centroid vector built from 19 ML anchor phrases:
-   - **>= 0.35** → `course_related` — answer from video transcripts via RAG
-   - **>= 0.20** → `course_related_general` — ML topic but not in videos, LLM answers from its own knowledge with a disclaimer
-   - **< 0.20** → `off_topic` — rejected (not ML-related at all)
+   - **>= 0.58** → `course_related` — answer from video transcripts via RAG
+   - **>= 0.55** → `course_related_general` — ML topic but not in videos, LLM answers from its own knowledge with a disclaimer
+   - **< 0.55** → `off_topic` — rejected (not ML-related at all)
 3. **Retrieval** (RAG path) — BGE-M3 embeddings + FAISS inner-product search finds top-5 relevant transcript chunks
 4. **Generation** — Groq's LLaMA 70B (or Ollama's LLaMA 3.2) generates a response, streamed token-by-token
 5. **Storage** — question, response, and source citations are saved to SQLite

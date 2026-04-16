@@ -34,9 +34,9 @@ describe('InputArea', () => {
 import WelcomeScreen from '../components/WelcomeScreen.jsx';
 
 describe('WelcomeScreen', () => {
-  it('renders InferaMind AI heading', () => {
+  it('renders RouteLM heading', () => {
     render(<WelcomeScreen onSuggestionClick={() => {}} />);
-    expect(screen.getByText('InferaMind AI')).toBeInTheDocument();
+    expect(screen.getByText('RouteLM')).toBeInTheDocument();
   });
 
   it('renders suggestion buttons', () => {

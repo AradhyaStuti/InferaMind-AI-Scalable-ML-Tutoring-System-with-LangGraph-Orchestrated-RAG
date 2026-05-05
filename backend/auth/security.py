@@ -85,6 +85,23 @@ def create_user(username: str, password: str) -> dict:
     return dict(row)
 
 
+def ensure_demo_user(password: str, username: str = "demo") -> None:
+    """Idempotently create a demo account so a public deployment has a clickable login.
+
+    Called from startup when SEED_DEMO_USER=true. No-op if the user already exists.
+    """
+    with _get_conn() as conn:
+        existing = conn.execute("SELECT 1 FROM users WHERE username = ?", (username,)).fetchone()
+        if existing:
+            return
+        conn.execute(
+            "INSERT INTO users (id, username, password_hash, created_at) VALUES (?, ?, ?, ?)",
+            (str(uuid.uuid4()), username, pwd_context.hash(password),
+             datetime.now(timezone.utc).isoformat()),
+        )
+    logger.info("Seeded demo user: %s", username)
+
+
 def authenticate_user(username: str, password: str) -> dict | None:
     with _get_conn() as conn:
         row = conn.execute(

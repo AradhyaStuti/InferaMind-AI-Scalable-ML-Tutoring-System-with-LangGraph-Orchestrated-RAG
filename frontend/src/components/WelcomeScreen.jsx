@@ -1,13 +1,15 @@
-import { Brain, TrendingUp, Cpu, Workflow, Sparkles, Zap } from 'lucide-react';
+import { Brain, Workflow, Database, Network, Layers, Code2, BarChart3, Boxes } from 'lucide-react';
 import RobotAvatar from './RobotAvatar';
 
 const suggestions = [
   { icon: <Brain size={14} />, text: 'What is supervised learning?' },
-  { icon: <TrendingUp size={14} />, text: 'How is ML creating economic value?' },
-  { icon: <Cpu size={14} />, text: 'What are the types of machine learning?' },
-  { icon: <Workflow size={14} />, text: 'What are the most important ML algorithms?' },
-  { icon: <Sparkles size={14} />, text: 'When should I apply machine learning?' },
-  { icon: <Zap size={14} />, text: 'Explain gradient descent simply' },
+  { icon: <Workflow size={14} />, text: 'Explain gradient descent simply' },
+  { icon: <Database size={14} />, text: 'What is RAG and why use it?' },
+  { icon: <Network size={14} />, text: 'How does self-attention work in transformers?' },
+  { icon: <Layers size={14} />, text: 'What is LangGraph used for?' },
+  { icon: <Code2 size={14} />, text: 'How do I use pandas groupby?' },
+  { icon: <BarChart3 size={14} />, text: 'When should I use random forest vs XGBoost?' },
+  { icon: <Boxes size={14} />, text: 'What are scikit-learn pipelines?' },
 ];
 
 export default function WelcomeScreen({ onSuggestionClick }) {
@@ -17,7 +19,7 @@ export default function WelcomeScreen({ onSuggestionClick }) {
         <RobotAvatar size={48} />
         <div>
           <h2>RouteLM</h2>
-          <p>Ask me anything about the ML course videos</p>
+          <p>Ask about ML, the LLM/RAG stack, or Python data science — I'll route to the right corpus.</p>
         </div>
       </div>
 

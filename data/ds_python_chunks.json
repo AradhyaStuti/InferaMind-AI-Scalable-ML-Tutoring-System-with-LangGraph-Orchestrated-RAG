@@ -1,0 +1,284 @@
+{
+  "chunks": [
+    {
+      "number": "01",
+      "title": "Python Essentials",
+      "start": 0,
+      "end": 90,
+      "text": "Python's core data types are list (mutable, ordered), tuple (immutable, ordered), dict (key-value, ordered as of 3.7), and set (unordered, unique). Lists are general-purpose; tuples are good for fixed records and dictionary keys; dicts are the workhorse for lookups; sets are for membership tests and deduplication. Choosing the right one matters more than people realize — using a list for membership lookups gives O(n) per check, while a set gives O(1)."
+    },
+    {
+      "number": "01",
+      "title": "Python Essentials",
+      "start": 90,
+      "end": 180,
+      "text": "List comprehensions are Python's idiomatic way to transform sequences. The form [expr for x in iterable if cond] is faster and clearer than the equivalent for-loop with append. Dict comprehensions ({k: v for ...}) and set comprehensions ({x for ...}) follow the same pattern. Use them for short transforms; if the comprehension grows past two or three clauses or starts wrapping lines, a regular for-loop is more readable."
+    },
+    {
+      "number": "01",
+      "title": "Python Essentials",
+      "start": 180,
+      "end": 270,
+      "text": "Generators (functions with yield) and generator expressions (parens instead of brackets) produce values lazily, one at a time. They use constant memory regardless of input size, which matters when you're iterating over millions of rows. The trade-off is that you can only iterate once and can't index into them. For pipelines like reading a large CSV → filter → transform → write, chaining generators keeps memory flat."
+    },
+    {
+      "number": "01",
+      "title": "Python Essentials",
+      "start": 270,
+      "end": 360,
+      "text": "Decorators wrap a function with extra behavior — logging, caching, timing, retries — without changing its body. functools.wraps preserves the wrapped function's metadata. functools.lru_cache is the most common practical decorator; it memoizes return values keyed by arguments. Context managers (with statements) handle setup/teardown for resources like files, database connections, or temporary state changes — write them with @contextlib.contextmanager for the simple cases."
+    },
+    {
+      "number": "02",
+      "title": "NumPy",
+      "start": 0,
+      "end": 90,
+      "text": "NumPy is the foundation of the Python data stack. Its core type, ndarray, is a typed, fixed-size, contiguous block of memory with metadata about shape and stride. This layout is what makes NumPy fast: operations like a + b are dispatched to compiled C loops over the raw bytes, with no Python object overhead per element. The cost is that ndarrays are homogeneous — every element has the same dtype."
+    },
+    {
+      "number": "02",
+      "title": "NumPy",
+      "start": 90,
+      "end": 180,
+      "text": "Broadcasting is NumPy's rule for combining arrays of different shapes. When you write arr + 1 or matrix + row_vector, NumPy stretches the smaller operand virtually (no copy) to match the larger one. The rule: align shapes from the right; each dimension must either be equal or one of them must be 1. Mastering broadcasting is what lets you replace nested loops with one-line vectorized expressions."
+    },
+    {
+      "number": "02",
+      "title": "NumPy",
+      "start": 180,
+      "end": 270,
+      "text": "Vectorization is the practice of expressing computation as array operations instead of Python-level loops. A loop over a million elements in pure Python takes ~100ms; the equivalent np.add or arr * 2 takes ~1ms. The rule of thumb: if you find yourself writing a for-loop over an array, look for a NumPy primitive (sum, mean, where, einsum, ufuncs) that does it in C. The exception is when the per-iteration logic is too irregular to vectorize cleanly."
+    },
+    {
+      "number": "03",
+      "title": "Pandas Basics",
+      "start": 0,
+      "end": 90,
+      "text": "Pandas adds two data structures on top of NumPy: Series (1D labeled array) and DataFrame (2D labeled table). The labels — index for rows, columns for columns — let you write df['column'] and df.loc[label] instead of remembering positions. A DataFrame is essentially a dict of Series sharing an index. Most data work in Python flows through pandas because of this label-based ergonomics."
+    },
+    {
+      "number": "03",
+      "title": "Pandas Basics",
+      "start": 90,
+      "end": 180,
+      "text": "Pandas indexing has two modes: .loc[] uses labels, .iloc[] uses integer positions. df.loc['2024-01-01', 'price'] reads by label; df.iloc[0, 2] reads by position. Don't mix them. Boolean indexing — df[df['amount'] > 100] — is the most common filter pattern. Chained indexing like df['col'][0] = 5 triggers the SettingWithCopyWarning and may silently fail; use df.loc[0, 'col'] = 5 instead."
+    },
+    {
+      "number": "03",
+      "title": "Pandas Basics",
+      "start": 180,
+      "end": 270,
+      "text": "Missing data in pandas is represented by NaN (for floats) or pd.NA (the newer nullable types). isna() returns a boolean mask, dropna() removes rows or columns with any/all missing values, and fillna() substitutes a value or strategy (forward fill, backward fill, mean, median). Be deliberate about which missing-handling strategy you use — silently dropping rows can mask data quality issues that you should be investigating."
+    },
+    {
+      "number": "03",
+      "title": "Pandas Basics",
+      "start": 270,
+      "end": 360,
+      "text": "groupby is the workhorse of analytical pandas. df.groupby('country')['sales'].sum() splits the data into groups, applies an aggregation, and combines the results. Common aggregations: sum, mean, median, count, nunique, agg(['sum', 'mean']) for multiple at once. transform returns a result aligned to the original index (useful for normalizing within a group). apply runs an arbitrary function per group — flexible but slower than the built-ins."
+    },
+    {
+      "number": "04",
+      "title": "Pandas Joins and Reshape",
+      "start": 0,
+      "end": 90,
+      "text": "pd.merge joins two DataFrames on shared columns or indices. The how argument picks the join type: 'inner' (intersection), 'left' (keep all left rows), 'right', or 'outer' (union). Always check row counts before and after a merge — unexpected explosions usually mean the join key isn't unique on the side you assumed it was. validate='one_to_one' or 'many_to_one' makes pandas raise instead of silently exploding."
+    },
+    {
+      "number": "04",
+      "title": "Pandas Joins and Reshape",
+      "start": 90,
+      "end": 180,
+      "text": "pivot and melt are inverses. pivot turns long format into wide: df.pivot(index='date', columns='product', values='sales') gives one column per product. melt does the reverse — useful when ggplot-style plotting libraries expect long format. pivot_table is pivot's grown-up sibling that handles aggregation when the index/column combination has duplicates. Most real-world reshaping is some combination of these three."
+    },
+    {
+      "number": "04",
+      "title": "Pandas Joins and Reshape",
+      "start": 180,
+      "end": 270,
+      "text": "Time series support is one of pandas' best features. Set a DatetimeIndex with pd.to_datetime + set_index, and you get resample (group by frequency: daily → monthly), shift (lag/lead), rolling (windowed aggregations), and slice-by-string (df.loc['2024-01']). For irregular series, asfreq fills gaps; for forecasting prep, resample().mean() or .last() is usually what you want."
+    },
+    {
+      "number": "05",
+      "title": "Visualization",
+      "start": 0,
+      "end": 90,
+      "text": "Matplotlib is the foundation: low-level, verbose, but anything is possible. The two patterns are pyplot (plt.plot, plt.title — global state, fine for quick scripts) and the object-oriented API (fig, ax = plt.subplots(); ax.plot(...) — better for anything beyond a single chart). For multi-panel figures, the object API is the only sane choice."
+    },
+    {
+      "number": "05",
+      "title": "Visualization",
+      "start": 90,
+      "end": 180,
+      "text": "Seaborn wraps matplotlib with statistical defaults. sns.histplot, sns.boxplot, sns.scatterplot, and sns.heatmap cover most exploratory needs in one line. sns.pairplot is great for getting a quick feel for variable relationships in a small dataset. For dashboards or interactive plots, plotly and altair are the modern choices; for publication-quality static figures, matplotlib remains the standard."
+    },
+    {
+      "number": "05",
+      "title": "Visualization",
+      "start": 180,
+      "end": 270,
+      "text": "Plot for the audience, not for yourself. Always label axes, include units, pick a color palette that's color-blind friendly (viridis, cividis), and avoid 3D bar charts. For comparing distributions, prefer overlaid histograms or ridgeline plots over side-by-side bars. For showing trends over time, a line chart almost always beats a bar chart. For categorical comparisons, sorted horizontal bars are easier to read than vertical bars when labels are long."
+    },
+    {
+      "number": "06",
+      "title": "Exploratory Data Analysis",
+      "start": 0,
+      "end": 90,
+      "text": "EDA — exploratory data analysis — is the first thing you do with any new dataset. The standard checklist: shape (df.shape), dtypes (df.dtypes), missing data (df.isna().sum()), summary stats (df.describe(include='all')), unique counts on categoricals (df.nunique()), and a few sample rows (df.sample(5)). Tools like pandas-profiling and ydata-profiling generate this report automatically; skim it before writing any analysis."
+    },
+    {
+      "number": "06",
+      "title": "Exploratory Data Analysis",
+      "start": 90,
+      "end": 180,
+      "text": "Spot outliers and impossible values early. A column called 'age' with negative numbers, prices of zero, dates in 1970, or duplicated unique IDs all signal data quality issues. df.describe() gives you min/max/quartiles per column — anything wildly outside the expected range deserves an investigation, not a quiet drop. Document the choices you make about each issue in a notebook cell, because you'll forget by next week."
+    },
+    {
+      "number": "06",
+      "title": "Exploratory Data Analysis",
+      "start": 180,
+      "end": 270,
+      "text": "Before modeling, look at the target distribution and the relationships between features and target. For classification, check class balance — a dataset that's 99% one class will fool naive accuracy metrics. For regression, plot the target distribution; heavy skew is often fixed by a log transform. For features, scatter plots vs the target reveal monotonic relationships; correlation matrices reveal multicollinearity that will trip up linear models."
+    },
+    {
+      "number": "07",
+      "title": "Statistics for Data Science",
+      "start": 0,
+      "end": 90,
+      "text": "Descriptive statistics summarize data: mean, median, mode for central tendency; variance, standard deviation, IQR for spread; skewness and kurtosis for shape. Median is more robust to outliers than mean — for a salary distribution, median is usually more honest. Mode is most useful for categoricals. Always look at the distribution before reporting a single number — a mean of 50 means very different things if values cluster at 50 vs split between 0 and 100."
+    },
+    {
+      "number": "07",
+      "title": "Statistics for Data Science",
+      "start": 90,
+      "end": 180,
+      "text": "Probability distributions you'll see constantly: normal (continuous, symmetric, bell curve), Bernoulli (single yes/no trial), binomial (count of successes in N trials), Poisson (counts of rare events per interval), and exponential (time between Poisson events). Knowing which distribution your data approximately follows guides which tests, models, and confidence intervals are valid. The central limit theorem says sample means tend toward normal even when the underlying data isn't."
+    },
+    {
+      "number": "07",
+      "title": "Statistics for Data Science",
+      "start": 180,
+      "end": 270,
+      "text": "Hypothesis testing answers \"is this difference real or noise?\" The t-test compares two group means; chi-square tests independence in a contingency table; ANOVA generalizes the t-test to more than two groups; Mann-Whitney U is the non-parametric alternative when normality assumptions don't hold. The p-value is the probability of seeing data this extreme if the null hypothesis were true — it's not the probability the null is true."
+    },
+    {
+      "number": "07",
+      "title": "Statistics for Data Science",
+      "start": 270,
+      "end": 360,
+      "text": "Correlation measures linear association: Pearson for continuous variables, Spearman for ranks (handles non-linear monotonic relationships). A correlation of 0.8 doesn't mean cause — confounding variables, reverse causation, and selection bias all produce spurious correlations. The rule of thumb: correlation is a hypothesis generator, not an answer. To establish causation you need a controlled experiment, an instrumental variable, or strong domain assumptions."
+    },
+    {
+      "number": "08",
+      "title": "scikit-learn Fundamentals",
+      "start": 0,
+      "end": 90,
+      "text": "scikit-learn's design has one consistent estimator API: every model has fit(X, y) to train, predict(X) for hard predictions, and predict_proba(X) or decision_function(X) for soft scores. Transformers (preprocessors) have fit + transform. This uniformity means swapping a LogisticRegression for a RandomForestClassifier in your code is usually a one-line change. Stick to this convention when writing custom estimators — inherit from BaseEstimator and ClassifierMixin/RegressorMixin."
+    },
+    {
+      "number": "08",
+      "title": "scikit-learn Fundamentals",
+      "start": 90,
+      "end": 180,
+      "text": "Always split before you peek. train_test_split(X, y, test_size=0.2, random_state=42, stratify=y) gives you a held-out set you must not touch until final evaluation. The stratify argument keeps class ratios balanced across the split — important for imbalanced classification. For time series, never use random splits; use a chronological cutoff so you don't train on the future."
+    },
+    {
+      "number": "08",
+      "title": "scikit-learn Fundamentals",
+      "start": 180,
+      "end": 270,
+      "text": "Pipelines bundle preprocessing and the model into a single object. Pipeline([('scaler', StandardScaler()), ('clf', LogisticRegression())]) lets you call fit/predict on the whole thing at once. The critical benefit is correctness: fit the scaler only on training data, then transform train and test with the same fitted scaler. Doing this manually with separate fit_transform calls on train and test is the #1 way to leak information from the test set into training."
+    },
+    {
+      "number": "08",
+      "title": "scikit-learn Fundamentals",
+      "start": 270,
+      "end": 360,
+      "text": "Cross-validation gives a more honest performance estimate than a single train/test split. cross_val_score(model, X, y, cv=5) trains and evaluates on 5 different folds. For hyperparameter tuning, GridSearchCV or RandomizedSearchCV combine this with a parameter sweep. For imbalanced data use StratifiedKFold (the default for classification); for grouped data (multiple rows per user) use GroupKFold so the same group can't appear in both train and validation."
+    },
+    {
+      "number": "09",
+      "title": "Feature Engineering",
+      "start": 0,
+      "end": 90,
+      "text": "Encoding categoricals: OneHotEncoder for nominal categories (no order — color, country); OrdinalEncoder when there's a meaningful order (small/medium/large); target encoding (mean of target per category) for high-cardinality features when you have lots of data. One-hot encoding a column with 1000 unique values produces 1000 sparse columns — usually a sign you should hash-encode or aggregate to a coarser category."
+    },
+    {
+      "number": "09",
+      "title": "Feature Engineering",
+      "start": 90,
+      "end": 180,
+      "text": "Scaling matters for distance-based models (k-NN, k-means, SVM with RBF) and gradient-based optimization (linear models, neural networks). StandardScaler centers to mean 0 and scales to unit variance; MinMaxScaler maps to [0, 1]; RobustScaler uses median and IQR (better with outliers). Tree-based models (random forest, XGBoost) are scale-invariant — scaling them is wasted work."
+    },
+    {
+      "number": "09",
+      "title": "Feature Engineering",
+      "start": 180,
+      "end": 270,
+      "text": "Feature selection has three main families. Filter methods score features individually (correlation, mutual information, chi-square). Wrapper methods like recursive feature elimination evaluate subsets by training a model. Embedded methods get selection for free from L1 regularization (Lasso) or tree feature importances. For many datasets, the biggest gains come from creating better features (interactions, ratios, time-based aggregates), not removing existing ones."
+    },
+    {
+      "number": "10",
+      "title": "Model Evaluation",
+      "start": 0,
+      "end": 90,
+      "text": "Classification metrics depend on what you care about. Accuracy is misleading for imbalanced classes. Precision is \"of predicted positives, how many were right?\" — care about it when false positives are costly (spam filtering). Recall is \"of actual positives, how many did we catch?\" — care about it when false negatives are costly (cancer screening). F1 is their harmonic mean. The confusion matrix shows all four cells (TP/FP/TN/FN) and is the most informative single artifact."
+    },
+    {
+      "number": "10",
+      "title": "Model Evaluation",
+      "start": 90,
+      "end": 180,
+      "text": "Regression metrics: MAE (mean absolute error) — interpretable in the target's units, robust to outliers. RMSE (root mean squared error) — penalizes large errors more, sensitive to outliers. R² — fraction of variance explained, ranges (typically) from 0 to 1, but can be negative for very bad fits. MAPE (percentage error) is intuitive but blows up when the target is near zero. Pick the one that aligns with what \"a good prediction\" actually means in your problem."
+    },
+    {
+      "number": "10",
+      "title": "Model Evaluation",
+      "start": 180,
+      "end": 270,
+      "text": "ROC curves plot true positive rate against false positive rate across all decision thresholds; AUC is the area under that curve. AUC of 0.5 is random; 1.0 is perfect. ROC-AUC is threshold-independent and works for ranking, but it can look optimistic on heavily imbalanced data — for those, precision-recall curves and PR-AUC are more honest. Always report the curve, not just the single number, when stakes are high."
+    },
+    {
+      "number": "10",
+      "title": "Model Evaluation",
+      "start": 270,
+      "end": 360,
+      "text": "Calibration measures whether your model's predicted probabilities match observed frequencies — when it says 70%, does that group actually contain 70% positives? Random forests and SVMs tend to produce poorly calibrated probabilities; logistic regression and properly tuned gradient boosting are usually well-calibrated. CalibratedClassifierCV (Platt scaling or isotonic regression) fixes calibration as a post-processing step. For decisions that depend on probability thresholds, calibration matters more than accuracy."
+    },
+    {
+      "number": "11",
+      "title": "Common Models",
+      "start": 0,
+      "end": 90,
+      "text": "Linear and logistic regression are the baselines you should always try first. They're fast, interpretable, scale to huge datasets, and surprisingly hard to beat on tabular data with strong feature engineering. Add L1 (Lasso) for sparse solutions that perform feature selection; L2 (Ridge) for stability when features are correlated; ElasticNet when you want both. If a deep model only marginally beats logistic regression, ship the logistic regression."
+    },
+    {
+      "number": "11",
+      "title": "Common Models",
+      "start": 90,
+      "end": 180,
+      "text": "Tree-based models are the workhorse of tabular ML. Decision trees alone overfit; random forests average many de-correlated trees and are a great default for a quick strong baseline (RandomForestClassifier(n_estimators=200)). They handle missing values, mixed types, and don't need scaling. The downside is they don't extrapolate beyond the training range, and they can be large in memory."
+    },
+    {
+      "number": "11",
+      "title": "Common Models",
+      "start": 180,
+      "end": 270,
+      "text": "Gradient-boosted trees (XGBoost, LightGBM, CatBoost) are the SOTA for tabular ML and win most Kaggle competitions on structured data. They build trees sequentially, each correcting the previous one's errors. LightGBM is usually the fastest and a strong default; XGBoost has the most mature ecosystem; CatBoost handles categorical features natively without one-hot encoding. Tune learning_rate (smaller, more rounds) and max_depth or num_leaves first; everything else is a smaller knob."
+    },
+    {
+      "number": "12",
+      "title": "Production Data Science",
+      "start": 0,
+      "end": 90,
+      "text": "Reproducibility is a non-negotiable for any analysis you'll show to someone else. Pin every dependency version (requirements.txt or pyproject.toml with a lock file), set random seeds for numpy and any model, and version your data — DVC, lakeFS, or just hashed snapshots in S3. Notebooks are great for exploration; for results that matter, refactor into a script that runs end-to-end without manual cell ordering."
+    },
+    {
+      "number": "12",
+      "title": "Production Data Science",
+      "start": 90,
+      "end": 180,
+      "text": "Deploying a scikit-learn model: serialize with joblib.dump (faster than pickle for numpy-heavy objects), wrap in a small FastAPI service that loads the model at startup and exposes a /predict endpoint. For batch scoring, schedule it via Airflow, Prefect, or a cron job. For streaming/online inference, look at BentoML or KServe. Monitor input distribution drift and prediction drift in production — model performance degrades silently when the world changes."
+    }
+  ]
+}

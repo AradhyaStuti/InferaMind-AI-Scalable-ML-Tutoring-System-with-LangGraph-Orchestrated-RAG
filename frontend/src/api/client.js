@@ -40,8 +40,6 @@ async function request(url, options = {}) {
   return res;
 }
 
-export async function fetchHealth() { return (await fetch(`${BASE}/health`)).json(); }
-
 export async function fetchConversations() { return (await request(`${BASE}/conversations`)).json(); }
 export async function fetchMessages(id) { return (await request(`${BASE}/conversations/${id}/messages`)).json(); }
 export async function deleteConversation(id) { await request(`${BASE}/conversations/${id}`, { method: 'DELETE' }); }
@@ -96,7 +94,7 @@ async function getWs() {
   return connectWs();
 }
 
-export async function* streamChatWs(message, conversationId, signal) {
+async function* streamChatWs(message, conversationId, signal) {
   const ws = await getWs();
   ws.send(JSON.stringify({ message, conversation_id: conversationId }));
 

@@ -1,0 +1,247 @@
+{
+  "summary": {
+    "n_queries": 10,
+    "n_off_topic": 6,
+    "n_on_topic": 4,
+    "off_topic_leak_rate": {
+      "plain_rag": "6/6 = 100%",
+      "routelm": "0/6 = 0%"
+    },
+    "on_topic_substantive_rate": {
+      "plain_rag": "4/4 = 100%",
+      "routelm": "4/4 = 100%"
+    }
+  },
+  "results": [
+    {
+      "query": "What is gradient descent?",
+      "expected": "answer",
+      "topic": "ML",
+      "plain_rag": {
+        "answer_chars": 1691,
+        "answer_preview": "**Gradient Descent** is a fundamental concept in machine learning, particularly in the context of supervised and unsuper",
+        "n_sources": 5,
+        "substantive": true,
+        "leaked": false,
+        "ms": 7994
+      },
+      "routelm": {
+        "qtype": "course_related",
+        "course": "ml-andrew-ng-c1",
+        "answer_chars": 1146,
+        "answer_preview": "**Gradient Descent** is a fundamental concept in Machine Learning, particularly in supervised learning. It's an optimiza",
+        "n_sources": 5,
+        "substantive": true,
+        "leaked": false,
+        "ms": 10101
+      }
+    },
+    {
+      "query": "How does self-attention work in transformers?",
+      "expected": "answer",
+      "topic": "GenAI",
+      "plain_rag": {
+        "answer_chars": 2693,
+        "answer_preview": "**Self-Attention in Transformers**\n=====================================\n\nSelf-attention is a core mechanism in transfor",
+        "n_sources": 5,
+        "substantive": true,
+        "leaked": false,
+        "ms": 1914
+      },
+      "routelm": {
+        "qtype": "course_related",
+        "course": "genai-rag-langchain",
+        "answer_chars": 1780,
+        "answer_preview": "**Self-Attention in Transformers**\n=====================================\n\nSelf-attention is a core mechanism in transfor",
+        "n_sources": 4,
+        "substantive": true,
+        "leaked": false,
+        "ms": 2228
+      }
+    },
+    {
+      "query": "How do I use pandas groupby?",
+      "expected": "answer",
+      "topic": "DS",
+      "plain_rag": {
+        "answer_chars": 1777,
+        "answer_preview": "**Using Pandas GroupBy**\n========================\n\nPandas `groupby` is a powerful function that allows you to split your",
+        "n_sources": 5,
+        "substantive": true,
+        "leaked": false,
+        "ms": 1832
+      },
+      "routelm": {
+        "qtype": "course_related",
+        "course": "ds-python-libraries",
+        "answer_chars": 2032,
+        "answer_preview": "**Pandas GroupBy: A Powerful Data Analysis Tool**\n====================================================\n\nPandas' `groupby",
+        "n_sources": 5,
+        "substantive": true,
+        "leaked": false,
+        "ms": 2307
+      }
+    },
+    {
+      "query": "What is RAG and why use it?",
+      "expected": "answer",
+      "topic": "GenAI",
+      "plain_rag": {
+        "answer_chars": 1651,
+        "answer_preview": "**RAG: Retrieval-Augmented Generation**\n=====================================\n\nRAG, or Retrieval-Augmented Generation, i",
+        "n_sources": 5,
+        "substantive": true,
+        "leaked": false,
+        "ms": 1726
+      },
+      "routelm": {
+        "qtype": "course_related",
+        "course": "genai-rag-langchain",
+        "answer_chars": 1984,
+        "answer_preview": "**RAG: Retrieval-Augmented Generation**\n=====================================\n\nRAG, or Retrieval-Augmented Generation, i",
+        "n_sources": 5,
+        "substantive": true,
+        "leaked": false,
+        "ms": 2274
+      }
+    },
+    {
+      "query": "Who won the 2022 FIFA World Cup?",
+      "expected": "refuse",
+      "topic": "off",
+      "plain_rag": {
+        "answer_chars": 452,
+        "answer_preview": "The retrieved excerpts don't seem to cover the question about the 2022 FIFA World Cup. They appear to be related to mach",
+        "n_sources": 5,
+        "substantive": true,
+        "leaked": true,
+        "ms": 1051
+      },
+      "routelm": {
+        "qtype": "off_topic",
+        "course": "ml-andrew-ng-c1",
+        "answer_chars": 202,
+        "answer_preview": "I appreciate your question, but I'm designed to help with **machine learning topics** only. I can answer questions about",
+        "n_sources": 0,
+        "substantive": false,
+        "leaked": false,
+        "ms": 482
+      }
+    },
+    {
+      "query": "How do I bake a chocolate cake?",
+      "expected": "refuse",
+      "topic": "off",
+      "plain_rag": {
+        "answer_chars": 887,
+        "answer_preview": "I think there's been a mix-up. Unfortunately, the retrieved excerpts don't cover baking a chocolate cake at all. They se",
+        "n_sources": 5,
+        "substantive": true,
+        "leaked": true,
+        "ms": 1395
+      },
+      "routelm": {
+        "qtype": "off_topic",
+        "course": "genai-rag-langchain",
+        "answer_chars": 202,
+        "answer_preview": "I appreciate your question, but I'm designed to help with **machine learning topics** only. I can answer questions about",
+        "n_sources": 0,
+        "substantive": false,
+        "leaked": false,
+        "ms": 501
+      }
+    },
+    {
+      "query": "What is the capital of France?",
+      "expected": "refuse",
+      "topic": "off",
+      "plain_rag": {
+        "answer_chars": 505,
+        "answer_preview": "I'm happy to help, but I have to be honest with you - the retrieved excerpts don't cover this topic at all. They seem to",
+        "n_sources": 5,
+        "substantive": true,
+        "leaked": true,
+        "ms": 968
+      },
+      "routelm": {
+        "qtype": "off_topic",
+        "course": "genai-rag-langchain",
+        "answer_chars": 202,
+        "answer_preview": "I appreciate your question, but I'm designed to help with **machine learning topics** only. I can answer questions about",
+        "n_sources": 0,
+        "substantive": false,
+        "leaked": false,
+        "ms": 453
+      }
+    },
+    {
+      "query": "What's the weather in Tokyo today?",
+      "expected": "refuse",
+      "topic": "off",
+      "plain_rag": {
+        "answer_chars": 445,
+        "answer_preview": "I'm happy to help, but I have to be honest with you - the retrieved context doesn't cover the weather in Tokyo today. Th",
+        "n_sources": 5,
+        "substantive": true,
+        "leaked": true,
+        "ms": 977
+      },
+      "routelm": {
+        "qtype": "off_topic",
+        "course": "ds-python-libraries",
+        "answer_chars": 202,
+        "answer_preview": "I appreciate your question, but I'm designed to help with **machine learning topics** only. I can answer questions about",
+        "n_sources": 0,
+        "substantive": false,
+        "leaked": false,
+        "ms": 461
+      }
+    },
+    {
+      "query": "How do I apply for a US tourist visa?",
+      "expected": "refuse",
+      "topic": "off",
+      "plain_rag": {
+        "answer_chars": 804,
+        "answer_preview": "I think there may be a bit of a mismatch here. The retrieved excerpts don't seem to cover the topic of applying for a US",
+        "n_sources": 5,
+        "substantive": true,
+        "leaked": true,
+        "ms": 1234
+      },
+      "routelm": {
+        "qtype": "off_topic",
+        "course": "genai-rag-langchain",
+        "answer_chars": 202,
+        "answer_preview": "I appreciate your question, but I'm designed to help with **machine learning topics** only. I can answer questions about",
+        "n_sources": 0,
+        "substantive": false,
+        "leaked": false,
+        "ms": 477
+      }
+    },
+    {
+      "query": "Tell me a joke about cats",
+      "expected": "refuse",
+      "topic": "off",
+      "plain_rag": {
+        "answer_chars": 402,
+        "answer_preview": "I'm afraid the retrieved context doesn't have any information about jokes or cats. The excerpts seem to be related to in",
+        "n_sources": 5,
+        "substantive": true,
+        "leaked": true,
+        "ms": 1025
+      },
+      "routelm": {
+        "qtype": "off_topic",
+        "course": "genai-rag-langchain",
+        "answer_chars": 202,
+        "answer_preview": "I appreciate your question, but I'm designed to help with **machine learning topics** only. I can answer questions about",
+        "n_sources": 0,
+        "substantive": false,
+        "leaked": false,
+        "ms": 449
+      }
+    }
+  ]
+}

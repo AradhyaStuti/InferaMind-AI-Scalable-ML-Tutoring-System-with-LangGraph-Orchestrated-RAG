@@ -13,6 +13,7 @@ from langchain_community.docstore.in_memory import InMemoryDocstore
 from langchain_core.documents import Document
 
 from backend.config import OLLAMA_URL, EMBED_MODEL, EMBEDDINGS_PATH, TOP_K
+from backend.rag.courses import DEFAULT_COURSE_ID
 
 logger = logging.getLogger(__name__)
 
@@ -64,6 +65,9 @@ class EmbeddingService:
 
     def load(self):
         self.df = joblib.load(EMBEDDINGS_PATH)
+        if "course_id" not in self.df.columns:
+            self.df["course_id"] = DEFAULT_COURSE_ID
+
         documents = []
         embeddings_list = []
 
@@ -75,6 +79,7 @@ class EmbeddingService:
                     "title": row.get("title", ""),
                     "start": round(float(row["start"]), 1),
                     "end": round(float(row["end"]), 1),
+                    "course_id": row.get("course_id", DEFAULT_COURSE_ID),
                 },
             )
             documents.append(doc)
@@ -98,27 +103,35 @@ class EmbeddingService:
         )
         logger.info("Loaded %d chunks into FAISS", len(self.df))
 
-    def search(self, query: str, top_k: int = TOP_K) -> list[dict]:
+    def search(self, query: str, top_k: int = TOP_K, course_id: str | None = None) -> list[dict]:
         if self.vectorstore is None:
             raise RuntimeError("No vectorstore loaded")
 
-        cache_key = (query.strip().lower(), top_k)
+        cache_key = (query.strip().lower(), top_k, course_id or "*")
         cached = self._cache.get(cache_key)
         if cached is not None:
             return cached
 
-        docs_and_scores = self.vectorstore.similarity_search_with_score(query, k=top_k)
+        # Over-fetch if filtering, then trim — keeps cache deterministic without
+        # rebuilding the FAISS index per course.
+        fetch_k = top_k * 4 if course_id else top_k
+        docs_and_scores = self.vectorstore.similarity_search_with_score(query, k=fetch_k)
 
         results = []
         for doc, score in docs_and_scores:
+            if course_id and doc.metadata.get("course_id") != course_id:
+                continue
             results.append({
                 "video": doc.metadata.get("video", 0),
                 "title": doc.metadata.get("title", ""),
                 "start": doc.metadata.get("start", 0),
                 "end": doc.metadata.get("end", 0),
+                "course_id": doc.metadata.get("course_id", DEFAULT_COURSE_ID),
                 "text": doc.page_content,
                 "similarity": round(float(score), 3),
             })
+            if len(results) >= top_k:
+                break
 
         self._cache.put(cache_key, results)
         return results

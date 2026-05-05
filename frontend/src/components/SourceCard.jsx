@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Video, Clock, BarChart3 } from 'lucide-react';
+import { Video, Clock, BarChart3, BookOpen } from 'lucide-react';
 
 function formatTime(seconds) {
   const s = Math.max(0, Math.floor(seconds || 0));
@@ -8,14 +8,27 @@ function formatTime(seconds) {
   return `${m}:${String(sec).padStart(2, '0')}`;
 }
 
+function formatCourse(id) {
+  if (!id) return null;
+  return id.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
 export default memo(function SourceCard({ sources }) {
   if (!sources || sources.length === 0) return null;
+
+  const courseIds = [...new Set(sources.map(s => s.course_id).filter(Boolean))];
 
   return (
     <div className="sources" role="region" aria-label="Retrieved sources">
       <div className="sources-header">
         <BarChart3 size={13} aria-hidden="true" />
         <span>Sources ({sources.length} chunks)</span>
+        {courseIds.length > 0 && (
+          <span className="sources-course">
+            <BookOpen size={11} aria-hidden="true" />
+            {courseIds.map(formatCourse).join(', ')}
+          </span>
+        )}
       </div>
       <div className="source-chips">
         {sources.map((s) => {

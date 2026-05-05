@@ -1,21 +1,24 @@
-import { useEffect, useRef, useCallback } from 'react';
-import { AlertCircle, X, RotateCcw } from 'lucide-react';
+import { useEffect, useRef, useState, useCallback } from 'react';
+import { AlertCircle, X, RotateCcw, ArrowDown } from 'lucide-react';
 import MessageBubble from './MessageBubble';
 import WelcomeScreen from './WelcomeScreen';
 import InputArea from './InputArea';
 
 export default function ChatWindow({
   messages, isStreaming, activeNode, onSend, onCancel,
-  error, onDismissError, onRetry, onRegenerate,
+  error, onDismissError, onRetry, onRegenerate, inputRef, conversationId,
 }) {
   const bottomRef = useRef(null);
   const containerRef = useRef(null);
   const shouldAutoScroll = useRef(true);
+  const [showJump, setShowJump] = useState(false);
 
   const handleScroll = useCallback(() => {
     const el = containerRef.current;
     if (!el) return;
-    shouldAutoScroll.current = el.scrollHeight - el.scrollTop - el.clientHeight < 100;
+    const nearBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 100;
+    shouldAutoScroll.current = nearBottom;
+    setShowJump(!nearBottom);
   }, []);
 
   useEffect(() => {
@@ -23,6 +26,12 @@ export default function ChatWindow({
       bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages]);
+
+  const jumpToBottom = () => {
+    shouldAutoScroll.current = true;
+    setShowJump(false);
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const lastAssistantIdx = messages.findLastIndex(m => m.role === 'assistant');
 
@@ -48,6 +57,16 @@ export default function ChatWindow({
         )}
       </div>
 
+      {showJump && (
+        <button
+          className="jump-to-bottom"
+          onClick={jumpToBottom}
+          aria-label="Scroll to latest message"
+        >
+          <ArrowDown size={14} />
+        </button>
+      )}
+
       {error && !isStreaming && (
         <div className="chat-error" role="alert">
           <AlertCircle size={14} />
@@ -65,7 +84,13 @@ export default function ChatWindow({
         </div>
       )}
 
-      <InputArea onSend={onSend} disabled={isStreaming} onCancel={isStreaming ? onCancel : null} />
+      <InputArea
+        onSend={onSend}
+        disabled={isStreaming}
+        onCancel={isStreaming ? onCancel : null}
+        inputRef={inputRef}
+        focusKey={conversationId || 'new'}
+      />
     </main>
   );
 }

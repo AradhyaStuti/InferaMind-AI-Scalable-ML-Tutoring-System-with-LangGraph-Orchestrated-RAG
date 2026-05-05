@@ -1,0 +1,263 @@
+{
+  "chunks": [
+    {
+      "number": "01",
+      "title": "Deep Learning Foundations",
+      "start": 0,
+      "end": 90,
+      "text": "Deep learning is a subset of machine learning where models with many stacked layers — called deep neural networks — learn hierarchical representations directly from raw data. Each layer transforms its input into a slightly more abstract representation, so early layers might detect edges in an image while later layers detect objects. Training works by computing a loss between the prediction and the target, then using backpropagation to push gradient updates through every weight in the network."
+    },
+    {
+      "number": "01",
+      "title": "Deep Learning Foundations",
+      "start": 90,
+      "end": 180,
+      "text": "Activation functions like ReLU, GELU, and sigmoid introduce non-linearity, which is what lets a stack of linear layers approximate complex functions. Without them, a 100-layer network would behave like a single linear layer. Modern transformers and LLMs default to GELU because it tends to produce smoother gradients than ReLU at scale, especially in the deep residual blocks where small gradient noise compounds across many layers."
+    },
+    {
+      "number": "01",
+      "title": "Deep Learning Foundations",
+      "start": 180,
+      "end": 270,
+      "text": "Backpropagation is the algorithm used to train neural networks. It computes how much each weight contributed to the final loss by applying the chain rule of calculus from the output layer back to the input. The optimizer — typically Adam or AdamW for LLMs — then nudges each weight in the direction that would reduce the loss. The learning rate controls the step size: too high and training diverges, too low and it crawls."
+    },
+    {
+      "number": "02",
+      "title": "Transformers and Attention",
+      "start": 0,
+      "end": 90,
+      "text": "The transformer architecture, introduced in the 2017 paper Attention Is All You Need, replaced recurrent networks for most language tasks. Its core mechanism is self-attention: every token in a sequence computes a weighted average over every other token, where the weights come from a learned similarity score. This lets the model directly model long-range dependencies in O(n²) time instead of unrolling state through a sequence."
+    },
+    {
+      "number": "02",
+      "title": "Transformers and Attention",
+      "start": 90,
+      "end": 180,
+      "text": "Self-attention works by projecting each token into three vectors: a query, a key, and a value. The query for token i is dot-producted against every key, those scores are softmaxed into attention weights, and the output is a weighted sum of values. Multi-head attention runs several of these in parallel with different projections so the model can attend to different kinds of relationships — syntactic, semantic, positional — simultaneously."
+    },
+    {
+      "number": "02",
+      "title": "Transformers and Attention",
+      "start": 180,
+      "end": 270,
+      "text": "Modern LLMs are decoder-only transformers: they only have the right side of the original encoder-decoder architecture. Each layer is a masked self-attention block (so token i can only attend to tokens 0..i) followed by a feed-forward network, with residual connections and layer norm wrapped around both. Models like GPT, Llama, and Mistral all share this same template — the differences are mostly scale, training data, and small architectural tweaks like RoPE positional embeddings or grouped-query attention."
+    },
+    {
+      "number": "03",
+      "title": "Large Language Models",
+      "start": 0,
+      "end": 90,
+      "text": "A large language model is a transformer trained to predict the next token given a context window of preceding tokens. Pre-training is the expensive part: trillions of tokens of internet text are streamed through the model, and gradient descent slowly shapes its weights into a general world-knowledge prior. The result is a base model that can continue arbitrary text but doesn't yet follow instructions reliably."
+    },
+    {
+      "number": "03",
+      "title": "Large Language Models",
+      "start": 90,
+      "end": 180,
+      "text": "Instruction-tuning and RLHF turn a base LLM into a helpful chat assistant. Instruction-tuning is supervised fine-tuning on examples of (prompt, ideal completion) pairs. RLHF — reinforcement learning from human feedback — then trains a reward model on human comparisons of two outputs, and uses it to nudge the LLM toward responses humans prefer. Newer methods like DPO collapse those two stages into a single optimization step."
+    },
+    {
+      "number": "03",
+      "title": "Large Language Models",
+      "start": 180,
+      "end": 270,
+      "text": "At inference time, an LLM produces tokens one at a time, sampling from the probability distribution over its vocabulary. Temperature controls the sharpness of that distribution — temperature 0 always picks the top token, higher temperatures let lower-ranked tokens through. Top-p (nucleus) sampling restricts the candidate set to the smallest pool whose probabilities sum to p, which usually gives more coherent outputs than raw temperature alone."
+    },
+    {
+      "number": "03",
+      "title": "Large Language Models",
+      "start": 270,
+      "end": 360,
+      "text": "Hallucination is when an LLM produces confident-sounding text that isn't grounded in fact. It's a structural property of next-token prediction: the model has no explicit notion of \"I don't know,\" so when its training prior is weak on a topic it interpolates plausibly instead of refusing. The two main mitigations are retrieval-augmented generation, which gives the model real source material to cite, and constrained decoding, which forces output to match a known schema."
+    },
+    {
+      "number": "04",
+      "title": "Generative AI",
+      "start": 0,
+      "end": 90,
+      "text": "Generative AI is the umbrella term for models that produce novel content — text, images, audio, code — instead of just classifying or predicting. LLMs are the text branch; diffusion models like Stable Diffusion power the image side. What unites them is that they all model a probability distribution over outputs and sample from it, rather than mapping inputs to a fixed set of labels."
+    },
+    {
+      "number": "04",
+      "title": "Generative AI",
+      "start": 90,
+      "end": 180,
+      "text": "Prompt engineering is the practice of structuring inputs to steer LLM behavior. Useful techniques include: giving explicit role instructions (\"you are a careful code reviewer\"), few-shot examples that show the desired format, chain-of-thought prompts that ask the model to reason step by step, and structured output formats like JSON schemas. Most reliability gains come from being specific about the format and constraints, not from clever phrasing."
+    },
+    {
+      "number": "04",
+      "title": "Generative AI",
+      "start": 180,
+      "end": 270,
+      "text": "Tool use lets an LLM call external functions during a conversation — for example, querying a database, hitting an API, or running code. The model is given a list of tool schemas in the system prompt and emits a structured call when it decides one is needed. The runtime executes the tool, feeds the result back, and lets the model continue. This is what powers most agentic LLM applications."
+    },
+    {
+      "number": "05",
+      "title": "Retrieval-Augmented Generation",
+      "start": 0,
+      "end": 90,
+      "text": "RAG, or retrieval-augmented generation, is the pattern of fetching relevant documents from an external store and stuffing them into the LLM prompt before generation. It solves three problems at once: it grounds answers in real source material, it lets the model use information that wasn't in its training data, and it makes citations possible. The trade-off is added latency and the engineering work of building a retriever."
+    },
+    {
+      "number": "05",
+      "title": "Retrieval-Augmented Generation",
+      "start": 90,
+      "end": 180,
+      "text": "The classic RAG pipeline has three stages. Indexing happens offline: documents are chunked, embedded into vectors with a model like BGE or OpenAI's ada, and stored in a vector database. At query time, the user's question is embedded with the same model, the top-k nearest chunks are retrieved (cosine or inner-product similarity), and those chunks are injected into the LLM prompt. The LLM then generates an answer constrained to the retrieved context."
+    },
+    {
+      "number": "05",
+      "title": "Retrieval-Augmented Generation",
+      "start": 180,
+      "end": 270,
+      "text": "Chunking strategy matters more than people expect. Chunks that are too small lose context; chunks that are too large dilute relevance and waste tokens. A good default is 200–500 tokens with some overlap (50–100 tokens) between adjacent chunks so an answer that spans a chunk boundary still gets retrieved. For structured documents — code, transcripts with timestamps — chunking on semantic boundaries beats chunking on token counts."
+    },
+    {
+      "number": "05",
+      "title": "Retrieval-Augmented Generation",
+      "start": 270,
+      "end": 360,
+      "text": "Pure vector search has a known weakness: it captures semantic similarity but misses exact-keyword matches like product codes or proper nouns. Hybrid search combines dense retrieval (vectors) with sparse retrieval (BM25) and merges the rankings, often via reciprocal rank fusion. For many corpora this gives a 10–20% recall boost essentially for free."
+    },
+    {
+      "number": "05",
+      "title": "Retrieval-Augmented Generation",
+      "start": 360,
+      "end": 450,
+      "text": "A reranker is a second-stage model that re-scores the top retrieval results before they hit the LLM. Cross-encoders like BGE-Reranker score (query, document) pairs jointly, which is more accurate than the bi-encoder dot product used in first-stage retrieval, but too slow to run over millions of documents. The standard pattern is: first stage fetches 50–100 candidates with a fast bi-encoder, second stage reranks them down to the top 5–10."
+    },
+    {
+      "number": "05",
+      "title": "Retrieval-Augmented Generation",
+      "start": 450,
+      "end": 540,
+      "text": "Evaluating RAG is harder than evaluating a classifier because there's no single correct answer. The RAGAS framework breaks it down into four metrics. Context precision: are the retrieved chunks actually relevant? Context recall: did retrieval cover everything in the ground-truth answer? Faithfulness: is the generated answer supported by the retrieved chunks? Answer relevancy: does the answer actually address the question? Each is in [0, 1] and they catch different failure modes."
+    },
+    {
+      "number": "05",
+      "title": "Retrieval-Augmented Generation",
+      "start": 540,
+      "end": 630,
+      "text": "Common RAG failure modes: retrieving syntactically similar but semantically wrong chunks, the LLM ignoring the context and answering from its priors anyway, citations that don't actually support the claim, and over-retrieval that drowns the relevant chunk in noise. Routing — like skipping retrieval entirely for off-topic questions — is one of the cheapest fixes. Reranking is the next-cheapest. Fine-tuning the embedder on your domain is the most expensive but highest-impact."
+    },
+    {
+      "number": "06",
+      "title": "LangChain",
+      "start": 0,
+      "end": 90,
+      "text": "LangChain is a Python and JavaScript framework for building LLM applications. Its main contribution is a set of abstractions — chat models, prompt templates, output parsers, retrievers, and tools — with a common interface so you can swap providers without rewriting your code. The core piece is LCEL, the LangChain Expression Language, which lets you compose those pieces with the pipe operator: prompt | llm | parser."
+    },
+    {
+      "number": "06",
+      "title": "LangChain",
+      "start": 90,
+      "end": 180,
+      "text": "Prompt templates separate prompt strings from the variables they interpolate. ChatPromptTemplate.from_messages takes a list of (role, content) tuples with placeholders like {question}, and you can include MessagesPlaceholder to splice in a chat history. This is what makes prompts testable and version-controllable — you can diff a prompt change without diffing surrounding code."
+    },
+    {
+      "number": "06",
+      "title": "LangChain",
+      "start": 180,
+      "end": 270,
+      "text": "Output parsers convert raw LLM strings into typed Python objects. StrOutputParser is the trivial one — it just returns the string. PydanticOutputParser asks the model to produce JSON matching a Pydantic schema and validates it. JsonOutputParser is similar but schema-free. Most production code combines an output parser with a prompt instruction like \"return only valid JSON\" so the parser has something to work with."
+    },
+    {
+      "number": "06",
+      "title": "LangChain",
+      "start": 270,
+      "end": 360,
+      "text": "LangChain's chat-history support is built around BaseChatMessageHistory. You wrap your chain in RunnableWithMessageHistory, give it a session id, and it transparently loads the prior messages, runs the chain, and appends the new turn. For storage you can plug in Redis, SQL, an in-memory dict, or a custom backend. The point is to keep history concerns out of the prompt logic."
+    },
+    {
+      "number": "06",
+      "title": "LangChain",
+      "start": 360,
+      "end": 450,
+      "text": "Streaming in LangChain works by calling .stream() instead of .invoke() on a chain. Each component yields tokens as they arrive, and the chain forwards them. For UI, you typically iterate the stream in your route handler and forward each token over Server-Sent Events or WebSocket. The .astream_events() variant emits structured events for every node, which is useful when you want to show pipeline progress in the UI."
+    },
+    {
+      "number": "06",
+      "title": "LangChain",
+      "start": 450,
+      "end": 540,
+      "text": "LangChain agents bind a list of tools to an LLM and let the model decide when to call them. The classic ReAct loop is: think, choose a tool, observe the result, repeat until done. LangChain offers create_tool_calling_agent for the modern OpenAI/Anthropic-style function calling, and create_react_agent for the older text-based ReAct prompting. For anything non-trivial, most people now build agents in LangGraph instead."
+    },
+    {
+      "number": "07",
+      "title": "LangGraph",
+      "start": 0,
+      "end": 90,
+      "text": "LangGraph is a library, built on top of LangChain, for expressing LLM applications as state machines. Where a LangChain chain is a linear pipeline, a LangGraph graph is a directed graph of nodes with explicit state, conditional edges, and loops. This matters as soon as your application has branching logic, retries, or tool-use loops — anything you can't express cleanly as a single pipe chain."
+    },
+    {
+      "number": "07",
+      "title": "LangGraph",
+      "start": 90,
+      "end": 180,
+      "text": "A LangGraph workflow is built by instantiating StateGraph with a typed state schema (usually a TypedDict), adding nodes with add_node, and wiring them with add_edge or add_conditional_edges. Each node is a function that receives the current state and returns a partial update — LangGraph merges those updates into the next state automatically. Once the graph is compiled, you invoke it like any other LangChain runnable."
+    },
+    {
+      "number": "07",
+      "title": "LangGraph",
+      "start": 180,
+      "end": 270,
+      "text": "Conditional edges let one node decide which node runs next, based on the current state. The classic example is a router: a classify node looks at the user's question and a routing function returns the name of the next node — say, \"retrieve\" or \"direct_answer\" or \"refuse\". This is the pattern RouteLM uses to skip retrieval for off-topic questions."
+    },
+    {
+      "number": "07",
+      "title": "LangGraph",
+      "start": 270,
+      "end": 360,
+      "text": "Streaming a LangGraph workflow gives you visibility into intermediate steps. Calling .stream() yields one event per node as the graph executes, so the UI can show \"classifying… retrieving… generating…\" in real time. For token-level streaming inside a single node, you call .astream_events() and filter for on_llm_stream events. This two-level streaming is what makes pipeline-aware chat UIs feel responsive."
+    },
+    {
+      "number": "07",
+      "title": "LangGraph",
+      "start": 360,
+      "end": 450,
+      "text": "LangGraph supports checkpointing — persisting the state of a running graph after each node. Combined with cycles in the graph, this enables long-running agentic workflows that can pause for human input or resume across server restarts. The MemorySaver checkpointer is fine for development; production code typically uses a SQL or Redis-backed checkpointer keyed by a thread id."
+    },
+    {
+      "number": "07",
+      "title": "LangGraph",
+      "start": 450,
+      "end": 540,
+      "text": "When to choose LangGraph over a LangChain chain: anytime you have branching, loops, or multi-step tool use. A pure RAG pipeline is fine as an LCEL chain. A research agent that retrieves, reasons, and re-queries until satisfied is a LangGraph workflow. The cost is a bit more boilerplate up front; the payoff is that the control flow is explicit and inspectable instead of hidden inside an agent executor."
+    },
+    {
+      "number": "08",
+      "title": "Production Concerns",
+      "start": 0,
+      "end": 90,
+      "text": "Streaming responses to the user is essentially mandatory for chat UX — full-response latency on a 70B model can be 5–30 seconds. The standard transports are Server-Sent Events for HTTP (simple, one-way) and WebSocket for bidirectional control. WebSockets win when you also need to send pipeline events, cancellation signals, or cancel-and-resume. SSE is easier to deploy because it works through HTTP/1.1 and most reverse proxies."
+    },
+    {
+      "number": "08",
+      "title": "Production Concerns",
+      "start": 90,
+      "end": 180,
+      "text": "Observability for LLM apps is harder than for regular services because the inputs and outputs are unstructured. The minimum useful set: log every prompt, every completion, every tool call, every retrieval result, and every latency. Tools like LangSmith, Langfuse, and Helicone do this with minimal code. Once you have traces, you can build evaluation datasets from real production traffic and catch regressions before users do."
+    },
+    {
+      "number": "08",
+      "title": "Production Concerns",
+      "start": 180,
+      "end": 270,
+      "text": "Cost control for LLM applications usually starts with caching. Prompt caching — supported natively by Anthropic and via custom layers for others — caches the static prefix of your prompt so you only pay for the suffix on each request. For repeated queries, an output cache keyed by (prompt hash → response) can drop cost to near zero. Beyond caching, use the smallest model that meets your quality bar and route harder queries to bigger models."
+    },
+    {
+      "number": "08",
+      "title": "Production Concerns",
+      "start": 270,
+      "end": 360,
+      "text": "Reliability patterns for LLM calls: a circuit breaker that opens after N consecutive failures and stops calling the upstream for a cooldown window; retry with exponential backoff for transient errors; a timeout per request so a hanging connection doesn't pin a worker; and a fallback path — usually a cheaper or local model — for when the primary provider is down. RouteLM uses all four."
+    },
+    {
+      "number": "08",
+      "title": "Production Concerns",
+      "start": 360,
+      "end": 450,
+      "text": "Safety and guardrails span input filtering (rejecting or sanitizing prompt injection attempts), output filtering (catching PII, policy violations, or unsafe code in responses), and refusal logic (the LLM declining requests it shouldn't fulfill). For RAG specifically, the routing layer is itself a safety mechanism — refusing off-topic queries means the model never gets a chance to hallucinate citations on a question it has no business answering."
+    }
+  ]
+}

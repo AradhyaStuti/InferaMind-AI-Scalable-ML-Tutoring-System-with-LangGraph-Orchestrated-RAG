@@ -1,19 +1,26 @@
-import { useEffect, useState, memo } from 'react';
+import { useEffect, useMemo, useState, memo } from 'react';
 import {
   MessageSquarePlus, Trash2, GraduationCap, MessageCircle,
-  User, Loader2, PanelLeftClose, PanelLeft, Pencil, Check, X, Home,
+  User, Loader2, PanelLeftClose, PanelLeft, Pencil, Check, X, Home, Search,
 } from 'lucide-react';
 import { deleteConversation, renameConversation } from '../api/client';
 
 export default memo(function Sidebar({
   conversations, activeId, onSelect, onNewChat, onRefresh,
-  loading, username, onBack,
+  loading, username, onBack, mobileOpen, onCloseMobile,
 }) {
   const [collapsed, setCollapsed] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [editTitle, setEditTitle] = useState('');
+  const [query, setQuery] = useState('');
 
   useEffect(() => { onRefresh(); }, [onRefresh]);
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return conversations;
+    return conversations.filter(c => c.title.toLowerCase().includes(q));
+  }, [conversations, query]);
 
   const handleDelete = async (e, id) => {
     e.stopPropagation();
@@ -50,7 +57,13 @@ export default memo(function Sidebar({
   };
 
   return (
-    <aside className={`sidebar ${collapsed ? 'collapsed' : ''}`} role="navigation" aria-label="Conversations">
+    <>
+      {mobileOpen && <div className="sidebar-backdrop" onClick={onCloseMobile} />}
+    <aside
+      className={`sidebar ${collapsed ? 'collapsed' : ''} ${mobileOpen ? 'mobile-open' : ''}`}
+      role="navigation"
+      aria-label="Conversations"
+    >
       <div className="sidebar-header">
         <div className="logo">
           <GraduationCap size={22} aria-hidden="true" />
@@ -72,12 +85,33 @@ export default memo(function Sidebar({
 
       {!collapsed && (
         <>
+          {conversations.length > 5 && (
+            <div className="conv-search">
+              <Search size={12} aria-hidden="true" />
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search conversations"
+                aria-label="Search conversations"
+              />
+              {query && (
+                <button
+                  className="conv-search-clear"
+                  onClick={() => setQuery('')}
+                  aria-label="Clear search"
+                >
+                  <X size={11} />
+                </button>
+              )}
+            </div>
+          )}
           <div className="conversations-label">Recent</div>
           <div className="conversations-list" role="list" aria-label="Chat history">
             {loading && (
               <p className="no-chats"><Loader2 size={14} className="spin" /> Loading...</p>
             )}
-            {!loading && conversations.map((conv) => (
+            {!loading && filtered.map((conv) => (
               <div
                 key={conv.id}
                 role="listitem"
@@ -119,6 +153,9 @@ export default memo(function Sidebar({
             {!loading && conversations.length === 0 && (
               <p className="no-chats">No conversations yet</p>
             )}
+            {!loading && conversations.length > 0 && filtered.length === 0 && (
+              <p className="no-chats">No matches for &ldquo;{query}&rdquo;</p>
+            )}
           </div>
         </>
       )}
@@ -135,5 +172,6 @@ export default memo(function Sidebar({
         </div>
       </div>
     </aside>
+    </>
   );
 });

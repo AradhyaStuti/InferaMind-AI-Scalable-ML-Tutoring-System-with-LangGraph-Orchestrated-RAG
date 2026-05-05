@@ -8,12 +8,12 @@ describe('InputArea', () => {
   it('renders textarea and send button', () => {
     render(<InputArea onSend={() => {}} disabled={false} />);
     expect(screen.getByRole('textbox')).toBeInTheDocument();
-    expect(screen.getByLabelText('Send message')).toBeInTheDocument();
+    expect(screen.getByLabelText(/send message/i)).toBeInTheDocument();
   });
 
   it('send button is disabled when input is empty', () => {
     render(<InputArea onSend={() => {}} disabled={false} />);
-    expect(screen.getByLabelText('Send message')).toBeDisabled();
+    expect(screen.getByLabelText(/send message/i)).toBeDisabled();
   });
 
   it('calls onSend with trimmed text and clears input', async () => {

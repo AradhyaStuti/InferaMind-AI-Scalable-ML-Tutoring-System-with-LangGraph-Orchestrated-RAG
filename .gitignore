@@ -8,13 +8,9 @@ venv/
 .env
 .venv/
 
-# Large / generated files (do NOT commit)
+# Generated / large files
 embeddings.joblib
 *.joblib
-*.npy
-*.npz
-prompt.txt
-response.txt
 *.log
 
 # Node

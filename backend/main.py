@@ -3,6 +3,7 @@
 import os
 import time
 import logging
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -15,7 +16,7 @@ from slowapi.middleware import SlowAPIMiddleware
 from backend.config import EMBED_MODEL, LLM_MODEL, LLM_PROVIDER
 from backend.rag.embeddings import embedding_service
 from backend.db.store import init_db
-from backend.auth.security import init_auth_db
+from backend.auth.security import init_auth_db, ensure_demo_user
 from backend.routes.auth import router as auth_router
 from backend.routes.chat import router as chat_router
 from backend.routes.conversations import router as conv_router
@@ -29,10 +30,32 @@ limiter = Limiter(
     enabled=os.getenv("RATE_LIMIT_ENABLED", "true").lower() == "true",
 )
 
+def startup():
+    init_db()
+    init_auth_db()
+
+    if os.getenv("SEED_DEMO_USER", "false").lower() == "true":
+        demo_pw = os.getenv("DEMO_USER_PASSWORD")
+        if demo_pw:
+            ensure_demo_user(demo_pw)
+        else:
+            logger.warning("SEED_DEMO_USER=true but DEMO_USER_PASSWORD is empty — skipping seed")
+
+    embedding_service.load()
+    logger.info("Application startup complete")
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    startup()
+    yield
+
+
 app = FastAPI(
     title="RouteLM",
     version="2.0.0",
     description="RAG-powered AI tutor with LangChain + LangGraph",
+    lifespan=lifespan,
 )
 
 app.state.limiter = limiter
@@ -76,14 +99,6 @@ async def log_requests(request: Request, call_next):
 app.include_router(auth_router)
 app.include_router(chat_router)
 app.include_router(conv_router)
-
-
-@app.on_event("startup")
-def startup():
-    init_db()
-    init_auth_db()
-    embedding_service.load()
-    logger.info("Application startup complete")
 
 
 @app.get("/api/health")

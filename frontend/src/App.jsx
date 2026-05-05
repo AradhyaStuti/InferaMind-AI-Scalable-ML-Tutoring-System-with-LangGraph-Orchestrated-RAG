@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { Menu } from 'lucide-react';
 import ErrorBoundary from './components/ErrorBoundary';
 import AuthScreen from './components/AuthScreen';
 import LandingScreen from './components/LandingScreen';
 import Sidebar from './components/Sidebar';
 import ChatWindow from './components/ChatWindow';
+import ToastHost from './components/Toast';
+import { pushToast } from './lib/toast';
 import { useAuth } from './hooks/useAuth';
 import { useChat } from './hooks/useChat';
+import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
 import './styles.css';
 
 function ChatApp({ username, onBack }) {
@@ -16,17 +20,52 @@ function ChatApp({ username, onBack }) {
     cancelStream, dismissError, retryLast, regenerateLast,
   } = useChat();
 
+  const inputRef = useRef(null);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const lastErrorRef = useRef(null);
+
+  useEffect(() => {
+    if (error && error !== lastErrorRef.current) {
+      pushToast(error, 'error');
+      lastErrorRef.current = error;
+    }
+    if (!error) lastErrorRef.current = null;
+  }, [error]);
+
+  useKeyboardShortcuts({
+    onNewChat: () => { startNewChat(); setMobileSidebarOpen(false); },
+    onCancel: () => {
+      if (isStreaming) cancelStream();
+      else if (error) dismissError();
+    },
+    onFocusInput: () => inputRef.current?.focus(),
+  });
+
+  const handleSelect = (id) => {
+    loadConversation(id);
+    setMobileSidebarOpen(false);
+  };
+
   return (
     <div className="app">
+      <button
+        className="mobile-menu-btn"
+        onClick={() => setMobileSidebarOpen(true)}
+        aria-label="Open conversations"
+      >
+        <Menu size={18} />
+      </button>
       <Sidebar
         conversations={conversations}
         activeId={conversationId}
-        onSelect={loadConversation}
-        onNewChat={startNewChat}
+        onSelect={handleSelect}
+        onNewChat={() => { startNewChat(); setMobileSidebarOpen(false); }}
         onRefresh={loadConversations}
         loading={loadingConversations}
         username={username}
         onBack={onBack}
+        mobileOpen={mobileSidebarOpen}
+        onCloseMobile={() => setMobileSidebarOpen(false)}
       />
       <ChatWindow
         messages={messages}
@@ -38,6 +77,8 @@ function ChatApp({ username, onBack }) {
         onDismissError={dismissError}
         onRetry={retryLast}
         onRegenerate={regenerateLast}
+        inputRef={inputRef}
+        conversationId={conversationId}
       />
     </div>
   );
@@ -47,29 +88,25 @@ export default function App() {
   const { isAuthenticated, username, error, loading, register, login, logout } = useAuth();
   const [chatStarted, setChatStarted] = useState(false);
 
+  let view;
   if (!isAuthenticated) {
-    return (
-      <ErrorBoundary>
-        <AuthScreen onLogin={login} onRegister={register} error={error} loading={loading} />
-      </ErrorBoundary>
+    view = <AuthScreen onLogin={login} onRegister={register} error={error} loading={loading} />;
+  } else if (!chatStarted) {
+    view = (
+      <LandingScreen
+        username={username}
+        onStart={() => setChatStarted(true)}
+        onLogout={logout}
+      />
     );
-  }
-
-  if (!chatStarted) {
-    return (
-      <ErrorBoundary>
-        <LandingScreen
-          username={username}
-          onStart={() => setChatStarted(true)}
-          onLogout={logout}
-        />
-      </ErrorBoundary>
-    );
+  } else {
+    view = <ChatApp username={username} onBack={() => setChatStarted(false)} />;
   }
 
   return (
     <ErrorBoundary>
-      <ChatApp username={username} onBack={() => setChatStarted(false)} />
+      {view}
+      <ToastHost />
     </ErrorBoundary>
   );
 }

@@ -1,7 +1,10 @@
 {
-  "name": "frontend",
+  "name": "routelm-frontend",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "React frontend for RouteLM",
+  "author": "Aradhya Stuti",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",

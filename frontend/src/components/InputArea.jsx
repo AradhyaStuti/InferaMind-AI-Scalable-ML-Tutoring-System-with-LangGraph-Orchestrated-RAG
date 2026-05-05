@@ -1,11 +1,18 @@
-import { useState, useRef, memo } from 'react';
+import { useState, useRef, useEffect, memo } from 'react';
 import { ArrowUp, Square } from 'lucide-react';
 
 const MAX_LENGTH = 2000;
+const isMac = typeof navigator !== 'undefined' && /Mac/i.test(navigator.platform);
+const MOD = isMac ? '⌘' : 'Ctrl';
 
-export default memo(function InputArea({ onSend, disabled, onCancel }) {
+export default memo(function InputArea({ onSend, disabled, onCancel, inputRef, focusKey }) {
   const [text, setText] = useState('');
-  const textareaRef = useRef(null);
+  const internalRef = useRef(null);
+  const ref = inputRef || internalRef;
+
+  useEffect(() => {
+    ref.current?.focus();
+  }, [focusKey, ref]);
 
   const remaining = MAX_LENGTH - text.length;
   const nearLimit = remaining <= 200;
@@ -15,9 +22,9 @@ export default memo(function InputArea({ onSend, disabled, onCancel }) {
     if (!text.trim() || disabled || atLimit) return;
     onSend(text.trim());
     setText('');
-    if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto';
-      requestAnimationFrame(() => textareaRef.current?.focus());
+    if (ref.current) {
+      ref.current.style.height = 'auto';
+      requestAnimationFrame(() => ref.current?.focus());
     }
   };
 
@@ -42,7 +49,7 @@ export default memo(function InputArea({ onSend, disabled, onCancel }) {
     <div className="input-area">
       <div className="input-wrapper">
         <textarea
-          ref={textareaRef}
+          ref={ref}
           value={text}
           onChange={handleInput}
           onKeyDown={handleKeyDown}
@@ -53,7 +60,7 @@ export default memo(function InputArea({ onSend, disabled, onCancel }) {
           autoFocus
         />
         {onCancel ? (
-          <button className="send-btn cancel-btn" onClick={onCancel} aria-label="Stop generating">
+          <button className="send-btn cancel-btn" onClick={onCancel} aria-label="Stop generating (Esc)" title="Stop generating (Esc)">
             <Square size={14} aria-hidden="true" />
           </button>
         ) : (
@@ -61,7 +68,8 @@ export default memo(function InputArea({ onSend, disabled, onCancel }) {
             className="send-btn"
             onClick={handleSubmit}
             disabled={!text.trim() || disabled || atLimit}
-            aria-label="Send message"
+            aria-label="Send message (Enter)"
+            title="Send (Enter) · Shift+Enter for newline"
           >
             <ArrowUp size={18} aria-hidden="true" />
           </button>
@@ -69,7 +77,7 @@ export default memo(function InputArea({ onSend, disabled, onCancel }) {
       </div>
       <div className="input-footer">
         <p className="input-hint">
-          <strong>LangChain</strong> &middot; <strong>LangGraph</strong> &middot; <strong>FAISS</strong> &middot; <strong>Ollama</strong> &middot; <strong>LLaMA 3.2</strong> &mdash; Enter to send
+          <kbd>Enter</kbd> send · <kbd>Shift+Enter</kbd> newline · <kbd>{MOD}+N</kbd> new chat · <kbd>{MOD}+/</kbd> focus
         </p>
         {text.length > 0 && (
           <span className={`char-count ${nearLimit ? 'warn' : ''} ${atLimit ? 'limit' : ''}`}>

@@ -1,0 +1,27 @@
+# Render blueprint. Apply with `render blueprint launch` or via the dashboard.
+# Notes:
+#   - bge-m3 needs ~1.5 GB RAM, so this won't fit on Render's free instance.
+#     The "standard" plan ($7/mo) is the floor; "pro" gives more headroom.
+#   - GROQ_API_KEY and JWT_SECRET must be set in the dashboard, not committed here.
+
+services:
+  - type: web
+    name: routelm
+    runtime: docker
+    plan: standard
+    healthCheckPath: /api/health
+    envVars:
+      - key: LLM_PROVIDER
+        value: groq
+      - key: GROQ_API_KEY
+        sync: false                    # set in dashboard, never in repo
+      - key: JWT_SECRET
+        generateValue: true            # render auto-generates a long random value
+      - key: ALLOWED_ORIGINS
+        value: https://routelm.onrender.com
+      - key: RATE_LIMIT_ENABLED
+        value: "true"
+      - key: SEED_DEMO_USER
+        value: "true"                  # auto-create a 'demo' account on boot
+      - key: DEMO_USER_PASSWORD
+        sync: false                    # set in dashboard
